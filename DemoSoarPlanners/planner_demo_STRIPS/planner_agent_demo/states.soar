@@ -1,0 +1,46 @@
+##!
+# @file
+#
+# @created smohan 20180201
+
+sp {propose*initialize-printer-state
+    (state <s>    ^name coach-ara
+                  -^env-state <ps>)
+-->
+    (<s>    ^operator <op> +)
+    (<op>    ^name initialize-env-state)
+    }
+
+sp {apply*initialize-env-state
+    (state <s>    ^name coach-ara
+                  ^operator.name initialize-env-state)
+-->
+    (<s>    ^env-state <es>
+            ^desired <d>)
+    (<es>    ^part <toner1>
+             ^part <toner2>
+             ^container <printer>
+             ^container <cupboard>
+            # ^empty <printer>
+             ^hand <hand>
+             ^closed <printer>
+            # ^open <printer>
+             ^closed <cupboard>
+             ^in <in1>
+             ^empty <toner1>
+             ^full <toner2>
+             ^in <in2>
+             ^empty <hand>)
+    (<in1>   ^a <toner1>
+             ^b <printer>)
+    (<in2>   ^a <toner2>
+             ^b <cupboard>)
+     (<in2>    ^a <toner2>
+               ^b <hand>)
+    (<toner1>    ^name toner1)
+    (<toner2>    ^name toner2)
+    (<printer>    ^name printer)
+    (<cupboard>    ^name cupboard)
+    (<d>    ^condition printer-has-full-toner)}
+                 
+             

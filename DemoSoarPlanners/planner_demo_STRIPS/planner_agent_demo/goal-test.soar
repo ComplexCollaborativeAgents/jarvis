@@ -1,0 +1,21 @@
+##!
+# @file
+#
+# @created smohan 20180205
+
+
+sp {coach-ara*detect*goal-success
+    (state <s>    ^desired <d>
+                  ^env-state <es>)
+    (<d>    ^condition printer-has-full-toner)
+    (<es>    ^full <p>
+             ^in <in-rel>
+             ^container <printer>
+             ^closed <printer>)
+    (<in-rel>    ^a <p>
+                 ^b <printer>)
+    (<printer>    ^name printer)
+-->
+    (<s>    ^success <d>)
+    }
+    

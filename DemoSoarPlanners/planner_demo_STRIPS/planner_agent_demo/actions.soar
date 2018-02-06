@@ -1,0 +1,160 @@
+##!
+# @file
+#
+# @created smohan 20180201
+
+sp {propose*action*remove-from
+    (state <s>    ^name coach-ara
+                  ^env-state <es>)
+    (<es>    ^open <c>
+             ^container <c>
+             ^part <p>
+             ^empty <hand>
+             ^hand <hand>
+             ^in <in-rel>)
+    (<in-rel> ^a <p>
+              ^b <c>)
+-->
+    (<s>    ^operator <op> +)
+    (<op>    ^name remove-from
+             ^part <p>
+             ^container <c>)
+    }
+
+sp {apply*action*remove-from
+    (state <s>    ^name coach-ara
+                  ^operator <op>
+                  ^env-state <es>)
+    (<op>    ^name remove-from
+             ^part <p>
+             ^container <c>)
+    (<es>    ^in <in-rel>
+             ^hand <hand>)
+    (<in-rel>    ^a <p>
+                 ^b <c>)
+-->
+    (<es>    ^in <in-rel> -
+             ^empty <hand> -
+             ^in <in-new>
+             ^empty <c>)
+    (<in-new>    ^a <p>
+                 ^b <hand>)
+    }
+
+sp {propose*action*insert-into
+    (state <s>    ^name coach-ara
+                  ^env-state <es>)
+    (<es>    ^in <in-rel>
+             ^empty <c>
+             ^open <c>
+             ^part <p>
+             ^container <c>
+             ^hand <hand>)
+    (<in-rel>    ^a <p>
+                 ^b <hand>)
+-->
+    (<s>    ^operator <op> +)
+    (<op>    ^name insert-into
+             ^part <p>
+             ^container <c>)
+    }
+
+sp {apply*action*insert-into
+    (state <s>    ^name coach-ara
+                  ^env-state <es>
+                  ^operator <op>)
+    (<es>    ^in <in-rel>
+             ^empty <c>
+             ^hand <hand>)
+    (<in-rel>    ^a <p>
+                 ^b <hand>)
+    (<op>    ^name insert-into
+             ^part <p>
+             ^container <c>)
+-->
+    (<es>    ^empty <c> -
+             ^in <in-rel> -
+             ^in <in-new>
+             ^empty <hand>)
+    (<in-new>    ^a <p>
+                 ^b <c>)
+    }
+
+sp {propose*action*discard
+    (state <s>    ^name coach-ara
+                  ^env-state <es>)
+    (<es>    ^part <p>
+             ^in <in-rel>
+             ^hand <hand>)
+    (<in-rel> ^a <p>
+              ^b <hand>)
+-->
+    (<s>    ^operator <op> +)
+    (<op>    ^name discard
+             ^part <p>)
+    }
+
+sp {apply*action*discard
+    (state <s>    ^name coach-ara
+                  ^env-state <es>
+                  ^operator <op>)
+    (<es>    ^part <p>
+             ^in <in-rel>
+             ^hand <hand>)
+    (<in-rel>    ^a <p>
+                 ^b <hand>)
+    (<op>    ^name discard
+             ^part <p>)
+-->
+    (<es>    ^in <in-rel> -
+             ^empty <hand>)
+    }
+
+sp {propose*action*open
+    (state <s>    ^name coach-ara
+                  ^env-state <es>)
+    (<es>    ^container <c>
+             ^closed <c>)
+-->
+    (<s>    ^operator <op> +)
+    (<op>    ^name open
+             ^container <c>)
+    }
+
+
+sp {apply*action*open
+    (state <s>    ^name coach-ara
+                  ^env-state <es>
+                  ^operator <op>)
+    (<op>    ^name open
+             ^container <c>)
+-->
+    (<es>    ^closed <c> -
+             ^open <c>)
+    }
+
+sp {propose*action*close
+    (state <s>    ^name coach-ara
+                  ^env-state <es>)
+    (<es>    ^container <c>
+             ^open <c>)
+-->
+    (<s>    ^operator <op> +)
+    (<op>    ^name close
+             ^container <c>)
+    }
+
+
+sp {apply*action*close
+    (state <s>    ^name coach-ara
+                  ^env-state <es>
+                  ^operator <op>)
+    (<op>    ^name close
+             ^container <c>)
+-->
+    (<es>    ^open <c> -
+             ^closed <c>)
+    }
+    
+                  
+             

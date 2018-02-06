@@ -1,0 +1,20 @@
+##!
+# @file
+#
+# @created smohan 20180205
+
+sp {coach-ara*elaborate*problem-space
+    (state <s>    ^name coach-ara)
+-->
+    (<s>    ^problem-space <p>)
+    (<p>    ^name coach-ara
+            ^default-state-copy yes
+            ^two-level-attributes env-state)
+    }
+            
+
+#sp {coach-ara*elaborate*learn
+#    (state <s>    ^name selection)
+#-->
+#    (force-learn <s>)
+#    }

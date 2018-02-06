@@ -1,0 +1,18 @@
+##!
+# @file: 
+#
+# @created smohan 20180201
+
+source "actions.soar"
+
+source "states.soar"
+
+source "init.soar"
+
+source "default/selection.soar"
+source "default/selection-iterative-deepening.soar"
+source "search-control.soar"
+
+source "goal-test.soar"
+
+source "soar-parameters.soar"

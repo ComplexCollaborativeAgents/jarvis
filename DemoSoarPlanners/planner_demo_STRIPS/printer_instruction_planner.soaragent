@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<soaragent sourceCommandChangesDirectory="false">
+  <members>
+    <member path="planner_agent_demo/states.soar" />
+    <member path="planner_agent_demo/actions.soar" />
+    <member path="planner_agent_demo/search-control.soar" />
+    <member path="planner_agent_demo/goal-test.soar" />
+    <member path="planner_agent_demo/load.soar" />
+    <member path="planner_agent_demo/init.soar" />
+  </members>
+</soaragent>
+
