@@ -7,6 +7,8 @@
     <member path="planner_agent_demo/goal-test.soar" />
     <member path="planner_agent_demo/load.soar" />
     <member path="planner_agent_demo/init.soar" />
+    <member path="planner_agent_demo/monitor.soar" />
+    <member path="planner_agent_demo/default_old/selection-iterative-deepening/Operator_Tie/evaluate-operator/exceed-depth.soar" />
   </members>
 </soaragent>
 

@@ -42,7 +42,8 @@ sp {selection*apply*state*evaluation
    (<e> ^superoperator <ob>)}
 
 sp {selection*elaborate*evaluate-operator*evaluation
-   :default
+  # :default
+   :o-support
    (state <s> ^name selection
               ^operator <o>
               ^evaluation <e>)

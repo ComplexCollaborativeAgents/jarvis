@@ -5,7 +5,7 @@
 ## File            : default/selection-iterative deepening.soar
 ## Author          : John Laird
 ## Created on      : January 25, 2007  
-## Last Modified On: May 9, 2007, swinterm (removed local negations)
+## Last Modified On: 25 January, 2007
 ## 
 ## Contents:     Default productions for selection problem space for Soar 8.6 with iterative deepening
 ##                  !!!! Only works for look-ahead over operators that execute in single cycle - no operator-no-change

@@ -14,7 +14,7 @@ sp {selection*elaborate*name*selection
 sp {selection*elaborate*evaluation*value
    :default
    (state <s> ^evaluation <e>)
-   (<e> ^ << numeric-value symbolic-value >>)
+   (<e> ^ << numeric-value symbolic-value expected-value >>)
 -->
    (<e> ^value true)}
 
@@ -29,9 +29,23 @@ sp {selection*elaborate*evaluation*desired
 ###     7.3.3   Computing evaluations
 ###
 ###
-###     7.3.3.1 Computing numeric evaluations
+###     7.3.3.1 Converting expected-values to numeric preferences
 ###
-### This is domain specific, so there are no default productions for this.
+
+### If an operators has an expected value, set numeric preference to it
+
+sp {selection*evaluation*expected-values
+   :default
+   (state <s> ^name selection
+              ^superstate <ss>
+              ^evaluation <e1>)
+   (<ss> ^desired <d>)
+   (<e1> ^superoperator <x>
+         ^expected-value <v>
+         ^desired <d>)
+-->
+   (<ss> ^operator <x> = <v>)}
+
 
 ###
 ###     7.3.3.2 Comparing numeric evaluations
@@ -112,7 +126,23 @@ sp {selection*compare*same-symbolic-evaluations-are-indifferent
          ^symbolic-value <v>
          ^desired <d>)
    (<e2> ^superoperator <y>
-         ^symbolic-value <v>
+         ^symbolic-value { <> exhaustion-failure <v> }
+         ^desired <d>)
+-->
+   (<ss> ^operator <x> = <y>)}
+
+sp {selection*compare*same-symbolic-evaluations-are-indifferent*exhaustion-failure
+   :default
+   (state <s> ^name selection
+              ^quiescence t
+              ^superstate <ss>
+              ^evaluation <e1>  { <> <e1> <e2> })
+   (<ss> ^desired <d>)
+   (<e1> ^superoperator <x>
+         ^symbolic-value exhaustion-failure
+         ^desired <d>)
+   (<e2> ^superoperator <y>
+         ^symbolic-value exhaustion-failure
          ^desired <d>)
 -->
    (<ss> ^operator <x> = <y>)}
@@ -183,6 +213,20 @@ sp {selection*select*failure-evaluation-becomes-reject-preference
 -->
    (<ss> ^operator <o1> -)}
 
+## No chunking over exhaustion-failure
+sp {selection*select*exhaustion-failure-evaluation-becomes-reject-preference
+   :default
+   (state <s> ^name selection
+              ^quiescence t
+              ^superstate <ss>
+              ^evaluation <e1>)
+   (<ss> ^desired <e>)
+   (<e1> ^symbolic-value exhaustion-failure
+         ^desired <e>
+         ^superoperator <o1>)
+-->
+   (<ss> ^operator <o1> -)}
+
 sp {selection*select*prohibit-failure-evaluation-becomes-prohibit-preference
    :default
    (state <s> ^name selection
@@ -202,9 +246,9 @@ sp {selection*select*indifferent-evaluation-becomes-indifferent-preference
               ^evaluation <e1>)
    (<ss> ^desired <eb>)
    (<e1> ^symbolic-value indifferent
-         ^desired <eb> 
+         ^desired <eb>
          ^superoperator <o1>)
-   -->
+-->
    (<ss> ^operator <o1> =)}
 
 sp {selection*select*partial-failure-evaluation-becomes-worst-preference
@@ -216,7 +260,7 @@ sp {selection*select*partial-failure-evaluation-becomes-worst-preference
    (<e1> ^symbolic-value partial-failure
          ^desired <e>
          ^superoperator <o1>)
-   -->
+-->
    (<ss> ^operator <o1> <)}
 
 
@@ -228,11 +272,11 @@ sp {selection*select*partial-failure-evaluation-becomes-worst-preference
 
 sp {selection*elaborate*state*all-objects-evaluated
    :default
-   (state <s> ^name selection
-              ^operator <o> +)
-- {(<o> ^name evaluate-operator
-        ^evaluation.value true)}
-   -->
+   (state <s> ^name selection)
+  - {(<s> ^operator <o> +)
+     (<o> ^name evaluate-operator
+          ^evaluation.value true)}
+-->
    (<s> ^not-all-operators-evaluated true)}
 
 ### Signal that a value other than novalue has been assigned.
@@ -241,15 +285,15 @@ sp {selection*elaborate*state*found-value-true
    :default
    (state <s> ^name selection
               ^evaluation <e>)
-   (<e> ^ << numeric-value symbolic-value >> <> novalue)
-   -->
+   (<e> ^ << numeric-value symbolic-value expected-value >> <> novalue)
+-->
    (<s> ^found-value true)}
 
 ### Make novalue worse than any other value.
 
 sp {selection*compare*novalue-evaluation-always-worse
    :default
-   (state <s> ^name selection 
+   (state <s> ^name selection
               ^superstate <ss>
               ^evaluation <e1>
               ^evaluation { <> <e1> <e2> })
@@ -260,24 +304,22 @@ sp {selection*compare*novalue-evaluation-always-worse
    (<e2> ^superoperator <o2>
          ^numeric-value <> novalue
          ^desired <d>)
-   -->
-   (<ss> ^operator <o2> > <o1>)} 
-
-
+-->
+   (<ss> ^operator <o2> > <o1>)}
 
 ### Print the evaluation of any operator that has a name (which doesn't
 ### get states).
-
-sp {monitor*operator*evaluation
-   :default
-   (state <s> ^top-state <ts>
-              ^operator <o>)
-   (<o> ^name evaluate-operator
-        ^superoperator <obj>
-        ^evaluation. << numeric-value symbolic-value >> <n>)
-   (<obj> ^name <name>)
-   (<ts> ^superstate nil
-        -^verbose false)
--->
-   (write (crlf) |  Evaluation of | <obj> | (|
-   <name> |) is | <n>)}
+#
+#sp {monitor*operator*evaluation
+#   :default
+#   (state <s> ^top-state <ts>
+#              ^operator <o>)
+#   (<o> ^name evaluate-operator
+#        ^superoperator <obj>
+#        ^evaluation. << numeric-value symbolic-value >> <n>)
+#   (<obj> ^name <name>)
+#   (<ts> ^superstate nil
+#        -^verbose false)
+#-->
+##   (write (crlf) |  Evaluation of | <obj> | (|
+#   <name> |) is | <n>)}

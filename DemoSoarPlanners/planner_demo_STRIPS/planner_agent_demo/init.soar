@@ -14,5 +14,6 @@ sp {propose*init-agent
 sp {apply*init-agent
     (state <s>    ^operator.name init-agent)
 -->
-    (<s>    ^name coach-ara)
+    (<s>    ^name coach-ara
+            ^previous-operator nil)
     }

@@ -1,4 +1,4 @@
-81
+86
 SOAR_ID 0
 SOAR_ID 1
 SOAR_ID 2
@@ -17,7 +17,7 @@ ENUMERATION 14 2 indifferent not-indifferent
 ENUMERATION 15 1 true
 ENUMERATION 16 1 novalue
 INTEGER_RANGE 17 -2147483648 2147483647
-ENUMERATION 18 9 failure indifferent lose novalue partial-failure partial-success prohibit-failure required-success success
+ENUMERATION 18 10 exhaustion-failure failure indifferent lose novalue partial-failure partial-success prohibit-failure required-success success
 ENUMERATION 19 1 true
 SOAR_ID 20
 SOAR_ID 21
@@ -80,11 +80,17 @@ ENUMERATION 77 1 false
 ENUMERATION 78 2 false true
 SOAR_ID 79
 SOAR_ID 80
-120
+ENUMERATION 81 1 t
+SOAR_ID 82
+FLOAT_RANGE 83 -Infinity Infinity
+FLOAT_RANGE 84 -Infinity Infinity
+ENUMERATION 85 1 novalue
+128
 0 attribute 61
 0 choices 62
 0 desired 21
 0 duplicate-of 0
+0 exhaustion-failure 21
 0 failure 21
 0 impasse 60
 0 io 1
@@ -113,10 +119,13 @@ SOAR_ID 80
 9 not-all-operators-evaluated 13
 9 operator 23
 9 operator-selection 14
+9 quiescence 81
 9 superstate 0
 9 top-state 0
 9 type 10
 12 desired 21
+12 expected-value 83
+12 expected-value 85
 12 numeric-value 16
 12 numeric-value 17
 12 superoperator 20
@@ -151,6 +160,9 @@ SOAR_ID 80
 29 desired 21
 29 duplicate-of 0
 29 duplicates 58
+29 exhaustion-failure 21
+29 expected-value 50
+29 expected-value 84
 29 failure 21
 29 impasse 34
 29 indifferent 21
@@ -192,6 +204,7 @@ SOAR_ID 80
 47 type 48
 58 random-identifier 65
 65 copied-structure 66
+65 tried-tied-operator 82
 70 choices 75
 70 evaluation 12
 70 found-value 74

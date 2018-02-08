@@ -9,10 +9,18 @@ source "states.soar"
 
 source "init.soar"
 
-source "default/selection.soar"
-source "default/selection-iterative-deepening.soar"
+source "default_old/selection.soar"
+
+source "default_old/selection-iterative-deepening.soar"
+
 source "search-control.soar"
 
 source "goal-test.soar"
 
 source "soar-parameters.soar"
+
+source "monitor.soar"
+
+source "task-operator-printer.soar"
+
+source "elaborations.soar"

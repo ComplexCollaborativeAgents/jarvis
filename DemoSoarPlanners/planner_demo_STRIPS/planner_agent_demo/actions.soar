@@ -155,6 +155,71 @@ sp {apply*action*close
     (<es>    ^open <c> -
              ^closed <c>)
     }
+
+    
+
+####
+sp {maintain*previous*operator
+    (state <s>    ^name coach-ara
+                  ^operator <op>
+                  ^previous-operator <pop>)
+    (<op>    ^name << close open remove-from instert-into discard >>)
+-->
+    (<s>    ^previous-operator <pop> -
+            ^previous-operator <op>)
+    }
+
+sp {reject*close
+    (state <s>    ^name coach-ara
+                  ^operator <op> +
+                  ^previous-operator <pop>)
+    (<pop>    ^name open
+              ^container <c>)
+    (<op>    ^name close
+             ^container <c>)
+-->
+    (<s>    ^operator <op> -)
+    }
+
+sp {reject*open
+    (state <s>    ^name coach-ara
+                  ^operator <op> +
+                  ^previous-operator <pop>)
+    (<pop>    ^name close
+              ^container <c>)
+    (<op>    ^name open
+             ^container <c>)
+-->
+    (<s>    ^operator <op> -)
+    }
+
+sp {reject*remove-from
+    (state <s>    ^name coach-ara
+                  ^operator <op> +
+                  ^previous-operator <pop>)
+    (<pop>    ^name insert-into
+              ^container <c>
+              ^part <p>)
+    (<op>    ^name remove-from
+             ^container <c>
+             ^part <p>)
+-->
+    (<s>    ^operator <op> -)
+    }
+
+sp {reject*insert-into
+    (state <s>    ^name coach-ara
+                  ^operator <op> +
+                  ^previous-operator <pop>)
+    (<pop>    ^name remove-from
+              ^container <c>
+              ^part <p>)
+    (<op>    ^name insert-into
+             ^container <c>
+             ^part <p>)
+-->
+    (<s>    ^operator <op> -)
+    }
     
                   
              

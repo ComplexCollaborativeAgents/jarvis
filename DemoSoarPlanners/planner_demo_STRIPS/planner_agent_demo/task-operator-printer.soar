@@ -1,0 +1,18 @@
+##!
+# @file
+#
+# @created smohan 20180207
+
+#sp {evaluate-apply*task-operator*printer*path-cost
+#    (state <s>    ^name evaluate-operator
+#                  ^superstate.operator.evaluation <e>
+#                  ^operator <op>)
+#    (<e>    ^path-cost <pc>)
+#-->
+#    (<e>    ^path-cost (+ <pc> 1) 
+#            ^path-cost <pc> -)
+#    (write (crlf) |updated path-cost|)
+#    
+#}
+#
+#                  

@@ -1,0 +1,10 @@
+##!
+# @file
+#
+# @created smohan 20180207
+
+sp {all*elaborate*state*name
+    (state <s>    ^superstate.operator.name <name>)
+-->
+    (<s>    ^name <name>)
+    }

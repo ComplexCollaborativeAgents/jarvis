@@ -1,21 +1,11 @@
-## -*- Mode: sde -*-
-##
-############################# -*- Mode: Soar -*- #############################
-## 
 ## File            : default/simple.soar
 ## Author          : John Laird
-## Created on      : Mon Feb 27 16:15:34 1989  
-## Last Modified By:  <laird@umich.edu>
-## Last Modified On: 14 May, 2006
-## 
-## Contents:     Simple Default productions for Soar 8.6
+## Contents:         Simple default productions for Soar 9
 ##
 ###############################################################################
-##
-###
-###
-###		7.1	Default knowledge for the top context
-###
+
+chunk singleton any top-state any
+
 
 ## Elaborate every substate with io pointer.
 
@@ -27,6 +17,23 @@ sp {default*elaborate*state*io
    -->
    (<s> ^io <io>)}
 
+## Elaborate top-state with pointer to self.
+sp {elaborate*top-state
+   :default
+   (state <s> ^superstate nil)
+-->
+   (<s> ^top-state <s>)
+}
+## Elaborate a substate with a pointer to the top-state
+
+sp {elaborate*state*top-state
+   :default
+   (state <s> ^superstate <ss>)
+   (<ss> ^top-state <ts> 
+        -^operator.name evaluate-operator)
+-->
+   (<s> ^top-state <ts>)
+}
 ## Elaborate a state with the name of the superoperator
 
 sp {elaborate*state*operator*name
@@ -36,6 +43,7 @@ sp {elaborate*state*operator*name
 -->
    (<s> ^name <name>)}
 
+### WAIT OPERATOR
 ### Propose wait for a state no-change
 
 sp {top-ps*propose*wait
@@ -43,13 +51,14 @@ sp {top-ps*propose*wait
    :default
    (state <s> ^attribute state
               ^choices none
+             -^superstate.name evaluate-operator
              -^operator.name wait)
 -->
    (<s> ^operator <o> + <)
    (<o> ^name wait)}
 
 ### This avoids a operator no-change after wait is selected
-### I've included it just to keep the trace simple - it never fires
+### Included it just to keep the trace simple - it never fires
 
 sp {top-ps*apply*wait*random
    "Fake production just to avoid extra operator no-change."
@@ -59,6 +68,7 @@ sp {top-ps*apply*wait*random
 -->
    (<o> ^random elaboration)}
 
+### HALT under bad conditions
 sp {default*top-goal*halt*operator*failure
    "Halt if no operator can be selected for the top goal."
    :default
@@ -69,21 +79,23 @@ sp {default*top-goal*halt*operator*failure
    (write (crlf) |Soar must halt.| )
    (halt)}
 
+### Break a tie by creating indifferent preferences if get a state no-change in an impasse.
 sp {default*select*indifferent-and-worst*tied
-   "Indifferent an object if it leads to a tie that can not be resolved."
+   "Indifferent an operator if it leads to a tie that can not be resolved."
    :default
    (state <s1> ^operator <o> +)
-   (state <s2> ^superstate <s1>
-	         ^item <o>
-	         ^quiescence t)
+   (state <s2> ^impasse tie
+               ^superstate <s1>
+               ^item <o>
+               ^quiescence t)
    (state <s3> ^attribute state
-	         ^choices none
-	         ^superstate <s2>
-	         ^quiescence t)
+           ^choices none
+           ^superstate <s2>
+           ^quiescence t)
    -->
    (<s1> ^operator <o> =, < )}
 
-### If the problem space for handling the subgoal fails, signified by 
+### If the subgoal for a conflict impasses fails, signified by 
 ### the choices none impasse below it, make a reject-preference for each 
 ### conflicted object.
 
@@ -92,21 +104,13 @@ sp {default*select*reject*conflict
    :default
    (state <s1> ^operator <o> +)
    (state <s2> ^impasse conflict
-	         ^attribute operator
-	         ^superstate <s1>
-	         ^item <o>
-	         ^quiescence t)
+               ^superstate <s1>
+               ^item <o>
+               ^quiescence t)
    (state <s3> ^attribute state
-	         ^choices none
-	         ^superstate <s2>
-	         ^quiescence t)
+           ^choices none
+           ^superstate <s2>
+           ^quiescence t)
    -->
    (<s1> ^operator <o> -)}
-
-
-
-
-
-	
-
 

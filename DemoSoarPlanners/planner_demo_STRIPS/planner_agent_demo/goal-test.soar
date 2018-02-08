@@ -11,10 +11,12 @@ sp {coach-ara*detect*goal-success
     (<es>    ^full <p>
              ^in <in-rel>
              ^container <printer>
-             ^closed <printer>)
+             ^closed <printer>
+             ^closed <cupboard>)
     (<in-rel>    ^a <p>
                  ^b <printer>)
     (<printer>    ^name printer)
+    (<cupboard> ^name cupboard)
 -->
     (<s>    ^success <d>)
     }

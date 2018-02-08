@@ -7,8 +7,10 @@ sp {coach-ara*elaborate*problem-space
     (state <s>    ^name coach-ara)
 -->
     (<s>    ^problem-space <p>)
+           # ^path-cost 0.0)
     (<p>    ^name coach-ara
             ^default-state-copy yes
+            ^one-level-attributes previous-operator
             ^two-level-attributes env-state)
     }
             

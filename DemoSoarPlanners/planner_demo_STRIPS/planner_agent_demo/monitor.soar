@@ -1,0 +1,73 @@
+##!
+# @file
+#
+# @created smohan 20180206
+
+
+sp {coach-ara*monitor*planned*action*open
+    (state <s> ^name coach-ara
+               ^superstate nil
+               ^operator <op>)
+    (<op>    ^name open
+             ^container <c>)
+    (<c>    ^name <name>)
+-->
+    (write (crlf)
+            | Propose: open(|<name>|)|)
+    (interrupt)}
+
+sp {coach-ara*monitor*planned*action*close
+    (state <s> ^name coach-ara
+               ^superstate nil
+               ^operator <op>)
+    (<op>    ^name close
+             ^container <c>)
+    (<c>    ^name <name>)
+-->
+    (write (crlf)
+            | Propose: close (|<name>|)|)
+    (interrupt)}
+
+sp {coach-ara*monitor*planned*action*discard
+    (state <s> ^name coach-ara
+               ^superstate nil
+               ^operator <op>)
+    (<op>    ^name discard
+             ^part <p>)
+    (<p>    ^name <name>)
+-->
+    (write (crlf)
+            | Propose: discard (|<name>|)|)
+    (interrupt)}
+
+
+sp {coach-ara*monitor*planned*action*remove-from
+    (state <s>    ^name coach-ara
+                  ^superstate nil
+               ^operator <op>)
+    (<op>    ^name remove-from
+             ^container <c>
+             ^part <p>)
+    (<c>    ^name <namec>)
+    (<p>    ^name <namep>)
+-->
+    (write (crlf)
+            | Propose: remove (|<namep>|) from (|<namec>|)|)
+    (interrupt)}
+
+sp {coach-ara*monitor*planned*action*insert-into
+    (state <s>    ^name coach-ara
+                  ^superstate nil
+               ^operator <op>)
+    (<op>    ^name insert-into
+             ^container <c>
+             ^part <p>)
+    (<c>    ^name <namec>)
+    (<p>    ^name <namep>)
+-->
+    (write (crlf)
+            | Propose: insert (|<namep>|) into (|<namec>|)|)
+    (interrupt)}
+
+
+

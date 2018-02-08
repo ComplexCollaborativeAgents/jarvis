@@ -35,8 +35,6 @@ sp {apply*initialize-env-state
              ^b <printer>)
     (<in2>   ^a <toner2>
              ^b <cupboard>)
-     (<in2>    ^a <toner2>
-               ^b <hand>)
     (<toner1>    ^name toner1)
     (<toner2>    ^name toner2)
     (<printer>    ^name printer)
