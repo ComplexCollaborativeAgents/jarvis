@@ -9,9 +9,9 @@ source "states.soar"
 
 source "init.soar"
 
-source "default_old/selection.soar"
+source "default/selection.soar"
 
-source "default_old/selection-iterative-deepening.soar"
+source "default/selection-iterative-deepening.soar"
 
 source "search-control.soar"
 

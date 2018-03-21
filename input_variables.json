@@ -1,0 +1,9 @@
+{
+  "variable_list":
+  [
+    {"name": "toner_cartridge", "states": ["locked", "unlocked"]},
+    {"name": "front_door", "states": ["open", "closed"]},
+    {"name": "drum_cartridge", "states":["out", "in"]},
+    {"name": "document_feeder", "states":["open", "closed"]}
+  ]
+}
