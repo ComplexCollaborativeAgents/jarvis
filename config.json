@@ -12,9 +12,5 @@
 
     "RunParams":{
       "run_mode": "debug"
-    },
-
-    "Tracker":{
-      "server":"http://localhost:10000"
     }
 }

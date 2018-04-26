@@ -1,0 +1,12 @@
+##!
+# @file
+#
+# @created smohan 20180426
+sp {maintain-world-state*apply*complete-maintain-world-state
+	(state <s>	^name maintain-world-state
+            	^operator.name complete-maintain-world-state
+             	^superstate <ss>)
+ 	(<ss>	^operator <sop>)
+-->
+	(<ss>	^operator <sop> -)
+ }

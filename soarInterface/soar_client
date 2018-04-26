@@ -23,9 +23,9 @@ with open(CONFIG_FILE) as config_file:
 def parse_server_arguments():
     parser = argparse.ArgumentParser(description='Single Shot MultiBox Detection')
     parser.add_argument('--host', default='localhost', type=str,
-                        help='hostname for remote state queries')
-    parser.add_argument('--port', default=27000, type=int,
-                        help='socket port# for remote state queries')
+                        help='hostname for remote event queries')
+    parser.add_argument('--port', default=28000, type=int,
+                        help='socket port# for event state queries')
     args = parser.parse_args()
     return args
 
@@ -42,6 +42,7 @@ def create_and_start_coach(tracker_server):
 
     coach.register_output_callback(update, coach)
     coach.start()
+    coach.stop()
     logging.info("[soar_client] :: Started coaching agent")
 
 if __name__ == '__main__':

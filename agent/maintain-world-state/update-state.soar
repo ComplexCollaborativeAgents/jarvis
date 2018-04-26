@@ -1,0 +1,31 @@
+##!
+# @file
+#
+# @created smohan 20180426
+sp {maintain-world-state*apply*update-state*add-state-attribute
+	(state <s>	^name maintain-world-state
+            	^operator <op>)
+ 	(<op>	^name update-state
+        	^world-id <wid>
+         	^state-attribute <state-var>
+          	^numeric-value <num>
+           	^previous <prev>)
+-->
+	(<wid>	^<state-var> <prev> -
+        	^<state-var> <new>)
+ 	(<new>	^value <num>)
+  }
+
+sp {maintain-world-state*apply*update-state*add-state-attribute*other
+	(state <s>	^name maintain-world-state
+            	^operator <op>)
+ 	(<op>	^name update-state
+        	^world-id <wid>
+         	^state-attribute <state-var>
+          	^numeric-value <num>)
+  	(<wid>	^{<var> <> name <> visible <> <state-var>} <other>)
+    (<other> ^value <val>)
+-->
+	(<other>	^value <val> -
+ 				^value false)
+  }

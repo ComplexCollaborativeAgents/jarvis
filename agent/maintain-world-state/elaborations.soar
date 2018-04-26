@@ -1,0 +1,31 @@
+##!
+# @file
+#
+# @created smohan 20180404
+sp {maintain-world-state*elaborate*world-id
+	(state <s>	^name maintain-world-state
+            	^superstate.operator <sop>)
+ 	(<sop>	^name maintain-world-state
+          	^world-id <wid>)
+-->
+	(<s>	^world-id <wid>)
+ }
+
+sp {maintain-world-state*elaborate*input-id
+	(state <s>	^name maintain-world-state
+            	^superstate.operator <sop>)
+ 	(<sop>	^name maintain-world-state
+         	^input-link-id <id>)
+-->
+	(<s>	^input-link-id <id>)
+ }
+
+sp {maintain-world-state*elaborate*type
+	(state <s>	^name maintain-world-state
+            	^superstate.operator <sop>)
+ 	(<sop>	^name maintain-world-state
+         	^type <type>)
+-->
+	(<s>	^type <type>)
+ }
+

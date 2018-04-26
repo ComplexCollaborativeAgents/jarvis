@@ -1,0 +1,58 @@
+##!
+# @file
+#
+# @created smohan 20180426
+
+sp {maintain-world-state*propose*update-visibilty*object-sensed
+	(state <s>	^name maintain-world-state
+            	^world-id <wid>
+             	^input-link-id <id>
+             	^type object-sensed)
+ 	(<wid>	^visible false)
+-->
+	(<s>	^operator <op> +)
+ 	(<op>	^name update-visibility
+        	^type object-sensed
+        	^world-id <wid>
+         	^input-link-id <id>)
+  }
+
+sp {maintain-world-state*propose*update-state
+	(state <s>	^name maintain-world-state
+            	^world-id <wid>
+             	^input-link-id <id>
+              	^type object-sensed)
+ 	(<wid>	^visible true
+         	^paired-with <id>)
+  	(<id>	^<state-var>.confidence <num>)
+    (<wid>	^<state-var> <prev>)
+    (<prev> ^value false)
+-->
+	(<s>	^operator <op> +)
+ 	(<op>	^name update-state
+        	^world-id <wid>
+         	^state-attribute <state-var>
+          	^numeric-value <num>
+           	^previous <prev>)
+  }
+
+sp {maintain-world-state*propose*update-visibilty*object-not-sensed
+	(state <s>	^name maintain-world-state
+            	^world-id <wid>
+             	^type object-not-sensed)
+ 	(<wid>	^visible true)
+-->
+	(<s>	^operator <op> +)
+ 	(<op>	^name update-visibility
+        	^type object-not-sensed
+        	^world-id <wid>)
+  }
+	
+
+sp {maintain-world-state*propose*complete-maintain-world-state
+	(state <s>	^name maintain-world-state)
+-->
+	(<s>	^operator <op> + <)
+ 	(<op>	^name complete-maintain-world-state)
+  }
+            	

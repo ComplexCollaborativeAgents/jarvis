@@ -1,0 +1,17 @@
+##!
+# @file
+#
+# @created smohan 20180328
+
+sp {world*apply*instruct-open
+    (state <s>    ^name coach-ara
+                  ^operator <op>
+                  ^io.output-link <ol>)
+    (<op>     ^name instruct-open
+              ^component-name <name>)
+-->
+    (<ol>    ^instruction <i>)
+    (<i>    ^action open
+            ^component <name>)
+    }
+    

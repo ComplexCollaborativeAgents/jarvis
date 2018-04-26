@@ -1,0 +1,15 @@
+##!
+# @file: 
+#
+# @created smohan 20180322
+
+source "propose-maintain-world-state.soar"
+
+source "elaborations.soar"
+source "proposals.soar"
+
+source "update-visibility.soar"
+
+source "update-state.soar"
+
+source "complete-maintain-world-state.soar"

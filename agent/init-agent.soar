@@ -1,0 +1,68 @@
+##!
+# @file
+#
+# @created smohan 20180321
+
+sp {propose*init-agent
+    (state <s>    ^superstate nil
+                  -^name)
+-->
+    (<s>    ^operator <op> +)
+    (<op>    ^name init-agent)
+    }
+
+sp {apply*init-agent
+    (state <s>    ^operator.name init-agent)
+-->
+    (<s>    ^name coach-ara
+            ^previous-operator nil
+            ^world <ws>
+            ^topstate <ts>)
+    (<ws>    ^opposite <opp1>
+             ^opposite <opp2>
+             ^opposite <opp3>)
+    (<opp1>    ^state-var open
+               ^state-var closed)
+    (<opp2>    ^state-var locked
+               ^state-var unlocked)
+    (<opp3>    ^state-var in
+               ^state-var out)
+	### printer component model
+	(<ws>	^component <tc>
+       		^component <bt>
+         	^component <dc>
+          	^component <df>
+           	^component <pt>
+            ^component <fd>)
+ 	(<tc>	^visible false
+        	^locked.value false
+         	^unlocked.value false
+          	^name tone-cartridge
+           	^id tc1)
+  	(<bt>	^visible false
+         	^open.value false
+          	^closed.value false
+           	^name bypass-tray
+            ^id bt1)
+   	(<dc>	^visible false
+          	^out.value false
+           	^in.value false
+            ^name drum-cartridge
+            ^id dc1)
+    (<df>	^open.value false
+          	^closed.value false
+           	^visible false
+            ^name document-feeder
+            ^id df1)
+    (<pt>	^open.value false
+          	^closed.value false
+           	^visible false
+            ^name papertray
+            ^id pt1)
+    (<fd>	^open.value false
+          	^closed.value false
+           	^visible false
+            ^name front-door
+            ^id fd1)
+
+    }

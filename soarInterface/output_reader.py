@@ -14,9 +14,11 @@ class output_reader(object):
         for i in range(0, number_of_commands):
             commandID = self._soar_agent._agent.GetCommand(i)
             commandName = commandID.GetAttribute()
-            if commandName == "message":
-                message = commandID.GetParameterValue("message")
-                logging.info("[OutputWriter] :: Received \"%s\" from coach" % message)
+            if commandName == "instruction":
+                action = commandID.GetParameterValue("action")
+                component = commandID.GetParameterValue("component")
+                message = action + " " + component
+                logging.info("[output_writer] :: instruction - \"%s\"" % message)
                 self.compose_and_post_message(commandID)
             commandID.AddStatusComplete()
         pass

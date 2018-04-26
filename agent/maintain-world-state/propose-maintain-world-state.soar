@@ -1,0 +1,37 @@
+##!
+# @file
+#
+# @created smohan 20180329
+
+sp {coach-ara*propose*maintain-world-state*1
+	(state <s>	^name coach-ara
+            	^world <w>
+             	^io.input-link <il>)
+ 	(<il>	^component <c>)
+  	(<c>	^name <name>
+        	^<attr> {<val> <> <name>})
+   	(<w>	^component <wc>)
+    (<wc>	^name <name>)
+-->
+	(<s>	^operator <op> + =)
+ 	(<op>	^name maintain-world-state
+         	^input-link-id <c>
+          	^world-id <wc>
+           	^type object-sensed)
+  }
+
+sp {coach-ara*propose*maintain-world-state*2
+	(state <s>	^name coach-ara
+            	^world <w>
+             	^io.input-link <il>)
+ 	(<w>	^component <c>)
+  	(<c>	^visible true
+        	^name <name>)
+   	-{(<il>	^component <any>)
+      (<any>	^name <name>)}
+-->
+	(<s>	^operator <op> + =)
+ 	(<op>	^name maintain-world-state
+        	^world-id <c>
+         	^type object-not-sensed)
+  }

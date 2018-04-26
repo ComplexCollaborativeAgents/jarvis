@@ -1,0 +1,29 @@
+##!
+# @file
+#
+# @created smohan 20180426
+sp {maintain-world-state*apply*update-visibility*object-sensed
+	(state <s>	^name maintain-world-state
+            	^operator <op>)
+ 	(<op>	^name update-visibility
+        	^type object-sensed
+        	^world-id <wid>
+         	^input-link-id <id>)
+-->
+	(<wid>	^visible false -
+        	^visible true
+         	^paired-with <id>)
+ }
+
+sp {maintain-world-state*apply*update-visibility*object-not-sensed
+	(state <s>	^name maintain-world-state
+            	^operator <op>)
+ 	(<op>	^name update-visibility
+        	^type object-not-sensed
+        	^world-id <wid>)
+  	(<wid> ^paired-with <any>)
+-->
+	(<wid>	^visible true -
+        	^visible false
+         	^paired-with <any> -)
+ }

@@ -1,0 +1,15 @@
+##!
+# @file
+#
+# @created smohan 20180328
+
+sp {world*propose*instruct-open
+    (state <s>    ^name coach-ara
+                  ^world-state <w>)
+    (<w>    ^closed <f>)
+    (<f>    ^name front_door)
+-->
+    (<s>    ^operator <op> +)
+    (<op>    ^name instruct-open
+             ^component-name front_door)
+    }
