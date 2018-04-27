@@ -32,7 +32,7 @@ class input_writer(object):
             try:
                 input_vars = json.load(ivars)
             except ValueError, e:
-                logging.fatal("[soar_client] :: Invalid json at %s; error = %s" % (input_vars_file, e))
+                logging.fatal("[soar_runner] :: Invalid json at %s; error = %s" % (input_vars_file, e))
                 sys.exit()
         return input_vars
 
@@ -82,7 +82,13 @@ class input_writer(object):
 
     def write_data_to_input_link(self):
         self.timestamp, current_state_list = self.tracker_server.get_all_since(self.timestamp)
-        print(self.timestamp, current_state_list)
+
+        time_WME = self._input_link.FindByAttribute("time", 0)
+        if time_WME is not None:
+            time_WME.DestroyWME()
+
+        self._input_link.CreateStringWME("time", str(self.timestamp))
+        #print(self.timestamp, current_state_list)
 
         ### add every perceptible components to the list
         for input_var in self.input_vars["variable_list"]:
@@ -108,7 +114,7 @@ class input_writer(object):
                         if child is not None:
                             attribute = child.GetAttribute()
                             if attribute == str(state):
-                                print "found attribute"
+                                #print "found attribute"
                                 found_state_attribute = True
                                 state_id = child.ConvertToIdentifier()
                                 state_id.GetChild(0).DestroyWME()

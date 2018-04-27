@@ -1,0 +1,62 @@
+##!
+# @file
+#
+# @created smohan 20180427
+
+sp {elaborate*output-link*clear
+    :o-support
+    (state <s>    ^name coach-ara
+                  ^io.output-link <ol>)
+    (<ol>    ^component <c>)
+    (<c>    ^status complete)
+-->
+    (<ol>    ^component <c> -)
+    }
+
+sp {elaborate*output-link*component
+    :o-support
+    (state <s>    ^name coach-ara
+                  ^world <w>
+                  ^io <io>
+                  ^tick true)
+    (<io>    ^output-link <ol>
+             ^input-link.time <t>)
+    (<w>    ^component <c>)
+    (<c>    ^id <id>
+            ^name <name>)
+-->
+    (<ol>    ^component <oc>)
+    (<oc>    ^id <id>
+             ^name <name>)
+    }
+
+sp {elaborate*output-link*state
+    :o-support
+    (state <s>    ^name coach-ara
+                  ^world <w>
+                   ^io <io>)
+    (<io>    ^output-link.component <oc>
+             ^input-link.time <t>)
+    (<w>    ^component <c>)
+    (<c>    ^{<state-var> <> name <> visible <> paired-with <> id}.value <val>
+            ^id <id>)
+    (<oc>    ^id <id>)
+-->
+    (<oc>    ^<state-var> <val>)
+    }
+
+sp {elaborate*output-link*visible
+    :o-support
+    (state <s>    ^name coach-ara
+                  ^world <w>
+                   ^io <io>)
+    (<io>    ^output-link.component <oc>
+             ^input-link.time <t>)
+    (<w>    ^component <c>)
+    (<c>    ^visible <v>
+            ^id <id>)
+    (<oc>    ^id <id>)
+-->
+    (<oc>    ^visible <v>)
+    }
+                  

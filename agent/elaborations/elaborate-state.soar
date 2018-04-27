@@ -22,6 +22,14 @@ sp {all*elaborate*world
     (<s>    ^world <w>)
     }
 
+sp {all*elaborate*tick
+    :o-support
+    (state <s>    ^name coach-ara
+                  ^tick true)
+-->
+    (<s>    ^tick true)
+    }
+
 #sp {elaborate*front-door*state*open
 #    (state <s>    ^name coach-ara
 #                  ^io.input-link <il>

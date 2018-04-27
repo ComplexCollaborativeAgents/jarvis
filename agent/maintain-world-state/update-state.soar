@@ -6,26 +6,27 @@ sp {maintain-world-state*apply*update-state*add-state-attribute
 	(state <s>	^name maintain-world-state
             	^operator <op>)
  	(<op>	^name update-state
-        	^world-id <wid>
-         	^state-attribute <state-var>
-          	^numeric-value <num>
-           	^previous <prev>)
+        	^world-id <wid>)
+  	(<wid>	^paired-with <id>
+          	^<state-var> <prev>)
+   	(<prev>	^value false)
+   	(<id>	^<state-var>.confidence <num>)
 -->
 	(<wid>	^<state-var> <prev> -
         	^<state-var> <new>)
  	(<new>	^value <num>)
   }
 
-sp {maintain-world-state*apply*update-state*add-state-attribute*other
+sp {maintain-world-state*apply*update-state*remove-state-attribute
 	(state <s>	^name maintain-world-state
             	^operator <op>)
  	(<op>	^name update-state
-        	^world-id <wid>
-         	^state-attribute <state-var>
-          	^numeric-value <num>)
-  	(<wid>	^{<var> <> name <> visible <> <state-var>} <other>)
-    (<other> ^value <val>)
+        	^world-id <wid>)
+  	(<wid>	^paired-with <id>
+          	^{<state-var> <> id <> name <> visible <> paired-with} <prev>)
+   	(<id>	-^<state-var>)
 -->
-	(<other>	^value <val> -
- 				^value false)
+	(<wid>	^<state-var> <prev> -
+        	^<state-var> <new>)
+ 	(<new>	^value false)
   }

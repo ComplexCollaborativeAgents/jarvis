@@ -30,10 +30,7 @@ sp {maintain-world-state*propose*update-state
 -->
 	(<s>	^operator <op> +)
  	(<op>	^name update-state
-        	^world-id <wid>
-         	^state-attribute <state-var>
-          	^numeric-value <num>
-           	^previous <prev>)
+        	^world-id <wid>)
   }
 
 sp {maintain-world-state*propose*update-visibilty*object-not-sensed

@@ -1,5 +1,4 @@
 import os, logging
-import json
 import Python_sml_ClientInterface as sml
 from threading import Thread
 import time

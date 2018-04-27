@@ -17,16 +17,8 @@ sp {apply*init-agent
     (<s>    ^name coach-ara
             ^previous-operator nil
             ^world <ws>
-            ^topstate <ts>)
-    (<ws>    ^opposite <opp1>
-             ^opposite <opp2>
-             ^opposite <opp3>)
-    (<opp1>    ^state-var open
-               ^state-var closed)
-    (<opp2>    ^state-var locked
-               ^state-var unlocked)
-    (<opp3>    ^state-var in
-               ^state-var out)
+            ^topstate <ts>
+            ^tick true)
 	### printer component model
 	(<ws>	^component <tc>
        		^component <bt>

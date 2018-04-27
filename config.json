@@ -5,9 +5,9 @@
     },
 
     "SoarAgent": {
-      "file": "../agent/load.soar",
+      "file": "agent/load.soar",
       "name": "coachAR",
-      "input_vars": "../input_variables.json"
+      "input_vars": "input_variables.json"
     },
 
     "RunParams":{
