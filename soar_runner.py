@@ -1,15 +1,12 @@
 import sys
 import xmlrpclib
 import soar_interface
+import soar_interface.soar_state_server
 from soar_interface.soar_agent import update
 from application import application
 import json
 import argparse
-
-## configure logging
-import logging, coloredlogs
-coloredlogs.DEFAULT_FIELD_STYLES = {'hostname': {'color': 'magenta'}, 'programname': {'color': 'cyan'}, 'name': {'color': 'blue'}, 'levelname': {'color': 'blue', 'bold': True}, 'asctime': {'color': 'cyan'}}
-coloredlogs.install(level='DEBUG', fmt='%(asctime)s  %(levelname)s  %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p')
+from log_config import logging
 
 
 ### read in the config file
@@ -37,6 +34,10 @@ def create_connection_with_tracker():
     logging.info("[soar_client] :: Created a connection to the tracker server.")
     return tracker_server
 
+def create_and_run_myserver(soar_agent):
+    soar_server = soar_interface.soar_state_server.soar_state_server(soar_agent, port=27000)
+    soar_server.run_in_background()
+
 
 def create_and_start_coach(tracker_server):
     coach = soar_interface.soar_agent.soar_agent(config, 'soar-coach', tracker_server)
@@ -44,9 +45,6 @@ def create_and_start_coach(tracker_server):
     coach.register_output_callback(update, coach)
     logging.info("[soar_client] :: Started coaching agent")
     return coach
-
-
-
 
 def run_application(coach):
     app = application.Application(coach)
@@ -56,4 +54,5 @@ def run_application(coach):
 if __name__ == '__main__':
     tracker_server = create_connection_with_tracker()
     coach = create_and_start_coach(tracker_server)
+    create_and_run_myserver(coach)
     run_application(coach)

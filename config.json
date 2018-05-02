@@ -12,5 +12,10 @@
 
     "RunParams":{
       "run_mode": "debug"
+    },
+
+    "Server":{
+      "output": 28000,
+      "input": 27000
     }
 }

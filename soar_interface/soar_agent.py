@@ -111,6 +111,9 @@ class soar_agent(object):
             self._is_running = False
             self.stop_requested = False
 
+    def get_all(self):
+        return {}
+
 def update(mid, this_agent, agent, message):
     this_agent.stop_agent_if_requested()
     this_agent._output_reader.read_output()
