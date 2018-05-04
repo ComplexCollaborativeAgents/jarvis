@@ -1,7 +1,7 @@
 {
     "Soar":{
     	"path":"/Users/smohan/Soar/soar9.6/bin",
-    	"sleep-time":0.01
+    	"sleep-time":0.1
     },
 
     "SoarAgent": {
@@ -11,7 +11,7 @@
     },
 
     "RunParams":{
-      "run_mode": "debug"
+      "run_mode": "run"
     },
 
     "Servers":{

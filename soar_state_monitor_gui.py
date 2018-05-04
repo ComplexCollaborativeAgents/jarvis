@@ -60,18 +60,19 @@ class Application(tk.Frame, object):
 
         index = 0
         state_var_list = sorted(server_vars, key=itemgetter('name'))
-        for vars in state_var_list:
-            for k,v in vars.items():
-                widget = self.var_to_widget_index[index][k]
-                string_var = self.var_to_StringVar_index[index][k]
-                string_var.set("{}".format(v))
-                if(v=='false'):
-                    widget.config(bg='red')
-                if(v=='true'):
-                    widget.config(bg='green')
-                if(v.replace(".",'').isdigit()):
-                    widget.config(bg='green')
-            index = index + 1
+        if len(self.var_to_StringVar_index) > 0 and len(self.var_to_widget_index) > 0:
+            for vars in state_var_list:
+                for k,v in vars.items():
+                    widget = self.var_to_widget_index[index][k]
+                    string_var = self.var_to_StringVar_index[index][k]
+                    string_var.set("{}".format(v))
+                    if(v=='false'):
+                        widget.config(bg='red')
+                    if(v=='true'):
+                        widget.config(bg='green')
+                    if(v.replace(".",'').isdigit()):
+                        widget.config(bg='green')
+                index = index + 1
         self.after(300,self.update)
 
 
@@ -111,6 +112,7 @@ class Application(tk.Frame, object):
 
         print("Calling server")
         server_vars = self.server.get_all()
+        print(server_vars)
         self.state_vars = server_vars
 
 

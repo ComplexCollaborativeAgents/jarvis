@@ -131,7 +131,7 @@ class soar_agent(object):
 
     def get_all(self):
         self._input_writer.new_interaction = "get-all"
-        while self._output_reader.response is None:
+        while self._output_reader.response is None or len(self._output_reader.response) <= 0:
             pass
         response = self._output_reader.response
         self._output_reader.response = None
