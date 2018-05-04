@@ -9,6 +9,7 @@ with open(CONFIG_FILE) as config_file:
         sys.exit()
     try:
         sys.path.append(config['Soar']['path'])
+
         import Python_sml_ClientInterface as sml
     except ValueError, e:
         logging.fatal("[soar_client] :: Cannot find local soar installation")

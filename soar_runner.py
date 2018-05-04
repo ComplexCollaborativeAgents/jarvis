@@ -35,7 +35,7 @@ def create_and_start_coach(tracker_server):
     coach.register_output_callback(update, coach)
     logging.info("[soar_client] :: Started coaching agent")
     coach.start()
-    coach.stop()
+    #coach.stop()
     return coach
 
 if __name__ == '__main__':
