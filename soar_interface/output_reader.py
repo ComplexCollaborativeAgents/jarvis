@@ -1,5 +1,4 @@
 from soar_agent import sml
-from application import application
 import logging
 import random
 import json
@@ -9,6 +8,7 @@ class output_reader(object):
     def __init__(self, soar_agent, config):
         self._soar_agent = soar_agent
         self._config = config
+        self.response = None
 
     def read_output(self):
         number_of_commands = self._soar_agent._agent.GetNumberCommands()
@@ -25,9 +25,4 @@ class output_reader(object):
                     dict[attribute] = value
             commandID.AddStatusComplete()
             output_list.append(dict)
-
-        #print output_list
-        #application.Application.from_previous_instance().print_string(output_list)
-        application.Application.from_previous_instance().show_state(output_list)
-        pass
-
+        self.response = output_list

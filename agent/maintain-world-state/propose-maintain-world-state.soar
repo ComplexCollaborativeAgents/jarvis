@@ -6,7 +6,7 @@
 sp {coach-ara*propose*maintain-world-state*1
 	(state <s>	^name coach-ara
             	^world <w>
-             	^io.input-link <il>)
+             	^io.input-link.world <il>)
  	(<il>	^component <c>)
   	(<c>	^name <name>
         	^<attr> {<val> <> <name>})
@@ -23,7 +23,7 @@ sp {coach-ara*propose*maintain-world-state*1
 sp {coach-ara*propose*maintain-world-state*2
 	(state <s>	^name coach-ara
             	^world <w>
-             	^io.input-link <il>)
+             	^io.input-link.world <il>)
  	(<w>	^component <c>)
   	(<c>	^visible true
         	^name <name>)

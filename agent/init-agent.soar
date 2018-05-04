@@ -17,8 +17,7 @@ sp {apply*init-agent
     (<s>    ^name coach-ara
             ^previous-operator nil
             ^world <ws>
-            ^topstate <ts>
-            ^tick true)
+            ^topstate <ts>)
 	### printer component model
 	(<ws>	^component <tc>
        		^component <bt>

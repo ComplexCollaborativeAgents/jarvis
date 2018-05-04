@@ -30,7 +30,6 @@ class soar_state_server:
 
 
         def get_all():
-            print("received get_all")
             return soar_agent.get_all()
 
         def dummy():

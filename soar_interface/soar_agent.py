@@ -112,7 +112,13 @@ class soar_agent(object):
             self.stop_requested = False
 
     def get_all(self):
-        return {}
+        self._input_writer.new_interaction = "get-all"
+        while self._output_reader.response is None:
+            pass
+        response = self._output_reader.response
+        self._output_reader.response = None
+        logging.debug("[soar_agent] :: state is {}".format(response))
+        return response
 
 def update(mid, this_agent, agent, message):
     this_agent.stop_agent_if_requested()

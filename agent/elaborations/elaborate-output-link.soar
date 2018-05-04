@@ -17,10 +17,11 @@ sp {elaborate*output-link*component
     :o-support
     (state <s>    ^name coach-ara
                   ^world <w>
-                  ^io <io>
-                  ^tick true)
+                  ^io <io>)
     (<io>    ^output-link <ol>
-             ^input-link.time <t>)
+             ^input-link <il>)
+    (<il>	^time <t>
+          	^interaction.request get-all)
     (<w>    ^component <c>)
     (<c>    ^id <id>
             ^name <name>)
@@ -36,7 +37,9 @@ sp {elaborate*output-link*state
                   ^world <w>
                    ^io <io>)
     (<io>    ^output-link.component <oc>
-             ^input-link.time <t>)
+             ^input-link <il>)
+    (<il>	^time <t>
+          	^interaction.request get-all)
     (<w>    ^component <c>)
     (<c>    ^{<state-var> <> name <> visible <> paired-with <> id}.value <val>
             ^id <id>)
@@ -51,7 +54,9 @@ sp {elaborate*output-link*visible
                   ^world <w>
                    ^io <io>)
     (<io>    ^output-link.component <oc>
-             ^input-link.time <t>)
+             ^input-link <il>)
+    (<il>	^time <t>
+          	^interaction.request get-all)
     (<w>    ^component <c>)
     (<c>    ^visible <v>
             ^id <id>)

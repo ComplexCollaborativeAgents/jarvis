@@ -3,7 +3,6 @@ import xmlrpclib
 import soar_interface
 import soar_interface.soar_state_server
 from soar_interface.soar_agent import update
-from application import application
 import json
 import argparse
 from log_config import logging
@@ -35,7 +34,7 @@ def create_connection_with_tracker():
     return tracker_server
 
 def create_and_run_myserver(soar_agent):
-    soar_server = soar_interface.soar_state_server.soar_state_server(soar_agent, port=27000)
+    soar_server = soar_interface.soar_state_server.soar_state_server(soar_agent, port=30000)
     soar_server.run_in_background()
 
 
@@ -44,15 +43,11 @@ def create_and_start_coach(tracker_server):
     logging.info("[soar_client] :: Created ARA Soar coach")
     coach.register_output_callback(update, coach)
     logging.info("[soar_client] :: Started coaching agent")
+    coach.start()
+    coach.stop()
     return coach
-
-def run_application(coach):
-    app = application.Application(coach)
-    app.master.title("Soar agent")
-    app.mainloop()
 
 if __name__ == '__main__':
     tracker_server = create_connection_with_tracker()
     coach = create_and_start_coach(tracker_server)
     create_and_run_myserver(coach)
-    run_application(coach)

@@ -9,21 +9,15 @@ class input_writer(object):
         self._soar_agent = soar_agent
         self._config = config
         self._input_link = soar_agent.get_input_link()
-        #self.to_write = None
+        self.new_interaction = None
         self.tracker_server = tracker_server
         self.set_time = None
         self.input_vars = self.load_input_vars_file()
         self.input_vars_id_map = {}
-        #self.create_input_link_ids()
         self.timestamp = 0
 
-    # def create_input_link_ids(self):
-    #     for input_var in self.input_vars["variable_list"]:
-    #         input_var_name = str(input_var["name"])
-    #         id = self._input_link.CreateIdWME(input_var_name)
-    #         self.input_vars_id_map[input_var_name] = id
-    #         id.CreateStringWME("name", input_var_name)
-    #         id.CreateStringWME("type", "component")
+        self._world_link = self._input_link.CreateIdWME("world")
+        self._interaction_link = self._input_link.CreateIdWME("interaction")
 
 
     def load_input_vars_file(self):
@@ -37,60 +31,27 @@ class input_writer(object):
         return input_vars
 
     def generate_input(self):
-        self.write_data_to_input_link()
-
-    def update_time(self):
-        pass
-
-    def clear_interaction_link(self):
-        self.delete_all_children(self._interaction_id)
-
-    def clear_input_link(self):
-        self.delete_all_children(self._input_link)
-
-    def reset_input_link(self):
-        self.delete_all_children(self._input_link)
-        self._interaction_id = self._input_link.CreateIdWME("response")
-
-    # def write_data_to_input_link(self):
-    #     self.timestamp, current_state_list = self.tracker_server.get_all_since(self.timestamp)
-    #     print(self.timestamp, current_state_list)
-    #     for input_var in self.input_vars["variable_list"]:
-    #         input_var_name = str(input_var["name"])
-    #         input_states = input_var["states"]
-    #         var_id = self.input_vars_id_map[input_var_name]
-    #         for state in input_states:
-    #             key = (input_var_name + " " + str(state)).replace("-", " ").title()
-    #             value = current_state_list.get(key)
-    #             if value is not None:
-    #                 attribute_name = str(state).replace(" ", "_").lower()
-    #                 value_name = "true"
-    #
-    #                 found_state_attribute = False
-    #                 for i in range(0, var_id.GetNumberChildren()):
-    #                     child = var_id.GetChild(i)
-    #                     if child is not None:
-    #                         attribute = child.GetAttribute()
-    #                         a_value = child.GetValueAsString()
-    #                         if attribute == str(state):
-    #                             found_state_attribute = True
-    #                             if a_value != str(value):
-    #                                 child.DestroyWME()
-    #                                 var_id.CreateStringWME(attribute_name, value_name)
-    #                 if found_state_attribute == False:
-    #                     var_id.CreateStringWME(attribute_name, value_name)
-
-    def write_data_to_input_link(self):
         self.timestamp, current_state_list = self.tracker_server.get_all_since(self.timestamp)
+        self.write_time_to_input_link()
+        self.write_world_info_to_input_link(current_state_list)
+        if self.new_interaction is not None:
+            self.write_interaction_to_input_link()
 
+    def write_interaction_to_input_link(self):
+        self.delete_all_children(self._interaction_link)
+        logging.debug("[input_writer] :: writing interaction {}".format(self.new_interaction))
+        if (self.new_interaction == "get-all"):
+            self._interaction_link.CreateStringWME("request", "get-all")
+        self.new_interaction = None
+
+    def write_time_to_input_link(self):
         time_WME = self._input_link.FindByAttribute("time", 0)
         if time_WME is not None:
             time_WME.DestroyWME()
 
         self._input_link.CreateStringWME("time", str(self.timestamp))
-        #print(self.timestamp, current_state_list)
 
-        ### add every perceptible components to the list
+    def write_world_info_to_input_link(self, current_state_list):
         for input_var in self.input_vars["variable_list"]:
             input_var_name = str(input_var["name"])
             input_states = input_var["states"]
@@ -98,11 +59,12 @@ class input_writer(object):
             for state in input_states:
                 key = (input_var_name + " " + str(state)).replace("-", " ").title()
                 value = current_state_list.get(key)
+                logging.debug("[input_writer] :: {}:{}".format(key, value))
                 if value is not None:
                     var_id = self.input_vars_id_map.get(input_var_name)
-                    #print("writing {}".format(input_var_name))
+                    logging.debug("[input_writer] :: writing component {}".format(input_var_name))
                     if var_id is None:
-                        var_id = self._input_link.CreateIdWME("component")
+                        var_id = self._world_link.CreateIdWME("component")
                         var_id.CreateStringWME("name", input_var_name)
                         self.input_vars_id_map[input_var_name] = var_id
 
@@ -114,7 +76,6 @@ class input_writer(object):
                         if child is not None:
                             attribute = child.GetAttribute()
                             if attribute == str(state):
-                                #print "found attribute"
                                 found_state_attribute = True
                                 state_id = child.ConvertToIdentifier()
                                 state_id.GetChild(0).DestroyWME()
@@ -136,8 +97,11 @@ class input_writer(object):
                                     child.DestroyWME()
 
         ### remove every non-perceptible component from the list
+        self.remove_components_not_visible(current_state_list, input_states)
+
+    def remove_components_not_visible(self, current_state_list, input_states):
         for var_name in self.input_vars_id_map.keys():
-            #print var_name
+            # print var_name
             for var_item in self.input_vars.get("variable_list"):
                 if var_item["name"] == var_name:
                     input_states = var_item["states"]
@@ -145,31 +109,15 @@ class input_writer(object):
             for state in input_states:
                 key = (var_name + " " + str(state)).replace("-", " ").title()
                 value = current_state_list.get(key)
-                #print(key, value)
+                # print(key, value)
                 if value is not None:
                     found_var = True
             if found_var is False:
-                #print("removing {}".format(var_name))
+                # print("removing {}".format(var_name))
                 var_id = self.input_vars_id_map[var_name]
                 self.delete_all_children(var_id)
                 var_id.DestroyWME()
                 del self.input_vars_id_map[var_name]
-
-
-
-    def write_data_to_identifier(self, id, data):
-        object = data
-        for key in object:
-            value = object[key]
-            if isinstance(value, int):
-                id.CreateIntWME(str(key), value)
-            elif isinstance(value, (str, unicode)):
-                id.CreateStringWME(str(key), str(value))
-            elif isinstance(value, float):
-                id.CreateFloatWME(str(key), value)
-            else:
-                subid = id.CreateIdWME(str(key))
-                self.write_data_to_identifier(subid, value)
 
     def delete_all_children(self, id):
         index = 0
