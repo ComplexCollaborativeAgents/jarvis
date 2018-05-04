@@ -17,8 +17,9 @@ with open(CONFIG_FILE) as config_file:
         logging.fatal("[soar_client] :: Invalid json at %s; error = %s" % (CONFIG_FILE, e))
         sys.exit()
 
+
 def create_connection_with_tracker():
-    url = 'http://{}:{}'.format(config['Servers']['input_host'], config['Servers']['input_port'])
+    url = 'http://{}:{}'.format('localhost', config['Servers']['input_port'])
     tracker_server = xmlrpclib.ServerProxy(url)
     logging.info("[soar_client] :: Created a connection to the tracker server.")
     return tracker_server

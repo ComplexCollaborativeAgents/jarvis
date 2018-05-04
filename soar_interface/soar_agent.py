@@ -1,19 +1,31 @@
-import os, logging
-
+import os, sys, logging, json
 import Python_sml_ClientInterface as sml
-
 from threading import Thread
 import time
 import output_reader, input_writer
 import random
 
+
+# CONFIG_FILE = "config.json"
+# with open(CONFIG_FILE) as config_file:
+#     try:
+#         config = json.load(config_file)
+#     except ValueError, e:
+#         logging.fatal("[soar_client] :: Invalid json at %s; error = %s" % (CONFIG_FILE, e))
+#         sys.exit()
+#     try:
+#         sys.path.append(config['Soar']['path'])
+#         import Python_sml_ClientInterface as sml
+#     except ValueError, e:
+#         logging.fatal("[soar_client] :: Cannot find local soar installation")
+
 class soar_agent(object):
     def __init__(self, config, username, tracker_server):
-        ## read config, username
         self._config = config
         self._username = username
 
         ## create Soar kernel, agent, load rules
+
         self._kernel = self.create_kernel()
         self._agent = self.create_agent(str(self._config['SoarAgent']['name']))
         self._agentFilepath = str(self._config['SoarAgent']['file'])

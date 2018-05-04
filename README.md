@@ -13,9 +13,9 @@
   > `git clone https://gitlab-external.parc.com/augmented-reality-assistant-2017/ARTaskAssistant`
 * Edit the `Soar`  `path` element in `config.json` to point to your local soar installation
 * Configure a Python2 conda environment
-
-       conda create --name soarpy2 python=2.7
-       conda install coloredlogs, tk
+  > `conda create --name soarpy2 python=2.7`
+  
+  > `conda install coloredlogs, tk`
     
     
 ## Usage
