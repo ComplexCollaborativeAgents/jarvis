@@ -14,8 +14,9 @@
       "run_mode": "debug"
     },
 
-    "Server":{
-      "output": 28000,
-      "input": 27000
+    "Servers":{
+      "output_port": 30000,
+      "input_port": 27000,
+      "input_host": "localhost"
     }
 }

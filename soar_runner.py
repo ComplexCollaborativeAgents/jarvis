@@ -17,24 +17,14 @@ with open(CONFIG_FILE) as config_file:
         logging.fatal("[soar_client] :: Invalid json at %s; error = %s" % (CONFIG_FILE, e))
         sys.exit()
 
-def parse_server_arguments():
-    parser = argparse.ArgumentParser(description='Single Shot MultiBox Detection')
-    parser.add_argument('--host', default='localhost', type=str,
-                        help='hostname for remote event queries')
-    parser.add_argument('--port', default=28000, type=int,
-                        help='socket port# for event state queries')
-    args = parser.parse_args()
-    return args
-
 def create_connection_with_tracker():
-    args = parse_server_arguments()
-    url = 'http://{}:{}'.format(args.host, args.port)
+    url = 'http://{}:{}'.format(config['Servers']['input_host'], config['Servers']['input_port'])
     tracker_server = xmlrpclib.ServerProxy(url)
     logging.info("[soar_client] :: Created a connection to the tracker server.")
     return tracker_server
 
 def create_and_run_myserver(soar_agent):
-    soar_server = soar_interface.soar_state_server.soar_state_server(soar_agent, port=30000)
+    soar_server = soar_interface.soar_state_server.soar_state_server(soar_agent, port=config['Servers']['output_port'])
     soar_server.run_in_background()
 
 
