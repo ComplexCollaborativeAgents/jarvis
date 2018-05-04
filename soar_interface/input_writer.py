@@ -31,7 +31,7 @@ class input_writer(object):
         return input_vars
 
     def generate_input(self):
-        time.sleep(0.01)
+        time.sleep(self._config['Soar']['sleep-time'])
         self.timestamp, current_state_list = self.tracker_server.get_all_since(self.timestamp)
         self.write_time_to_input_link()
         self.write_world_info_to_input_link(current_state_list)
