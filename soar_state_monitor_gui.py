@@ -112,7 +112,6 @@ class Application(tk.Frame, object):
 
         print("Calling server")
         server_vars = self.server.get_all()
-        print(server_vars)
         self.state_vars = server_vars
 
 
