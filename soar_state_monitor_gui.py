@@ -114,6 +114,9 @@ class Application(tk.Frame, object):
         server_vars = self.server.get_all()
         self.state_vars = server_vars
 
+        server_predicates = self.server.get_all_predicates()
+        print("Predicates: {}".format(server_predicates))
+
 
         print("Initializing interface grid")
         i=0

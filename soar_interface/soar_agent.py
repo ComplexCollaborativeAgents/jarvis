@@ -138,6 +138,55 @@ class soar_agent(object):
         logging.debug("[soar_agent] :: state is {}".format(response))
         return response
 
+    def get_all_predicates(self):
+        self._input_writer.new_interaction = "get-all"
+        while self._output_reader.response is None or len(self._output_reader.response) <= 0:
+            pass
+        response = self._output_reader.response
+        self._output_reader.response = None
+
+        predicate_response = self.convert_to_predicates(response)
+        logging.debug("[soar_agent] :: predicates are {}".format(predicate_response))
+        return predicate_response
+
+    def convert_to_predicates(self, response):
+        predicate_list = []
+        for component in response:
+            id = component['id']
+            type = component['name']
+            type_string = "type({},{})".format(id,type)
+            predicate_list.append(type_string)
+            if component['visible'] == 'true':
+                visibility_string = "visible({})".format(id)
+                predicate_list.append(visibility_string)
+
+            if 'open' in component.keys():
+                if component['open'] != 'false' and component['closed'] == 'false':
+                    open_string = "open_state({}, {})".format(id, 'open')
+                    predicate_list.append(open_string)
+                if component['open'] == 'false' and component['closed'] != 'false':
+                    open_string = "open_state({}, {})".format(id, 'closed')
+                    predicate_list.append(open_string)
+
+            if 'in' in component.keys():
+                if component['in'] != 'false' and component['out'] == 'false':
+                    in_string = "in_state({}, {})".format(id, 'in')
+                    predicate_list.append(in_string)
+                if component['in'] == 'false' and component['out'] != 'false':
+                    in_string = "in_state({}, {})".format(id, 'out')
+                    predicate_list.append(in_string)
+
+            if 'locked' in component.keys():
+                if component['locked'] != 'false' and component['unlocked'] == 'false':
+                    locked_string = "locked_state({},{})".format(id, 'locked')
+                    predicate_list.append(locked_string)
+                if component['locked'] == 'false' and component['unlocked'] != 'false':
+                    locked_string = "locked_state({},{})".format(id, 'unlocked')
+                    predicate_list.append(locked_string)
+        return predicate_list
+
+
+
 def update(mid, this_agent, agent, message):
     this_agent.stop_agent_if_requested()
     this_agent._output_reader.read_output()

@@ -11,7 +11,7 @@
     },
 
     "RunParams":{
-      "run_mode": "run"
+      "run_mode": "debug"
     },
 
     "Servers":{

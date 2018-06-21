@@ -32,10 +32,14 @@ class soar_state_server:
         def get_all():
             return soar_agent.get_all()
 
+        def get_all_predicates():
+            return soar_agent.get_all_predicates()
+
         def dummy():
             logging.info("[soar_state_server] :: server ending.")
 
         self.server.register_function(get_all, 'get_all')
+        self.server.register_function(get_all_predicates, 'get_all_predicates')
 
     def run(self):
         while not self.quit:

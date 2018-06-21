@@ -1,0 +1,6 @@
+   [{'visible': 'true', 'open': '0.89', 'name': 'front-door', 'closed': 'false', 'id': 'fd1'},
+     {'visible': 'false', 'open': 'false', 'name': 'papertray', 'closed': 'false', 'id': 'pt1'},
+     {'visible': 'false', 'open': 'false', 'name': 'document-feeder', 'closed': 'false', 'id': 'df1'},
+     {'visible': 'true', 'out': 'false', 'in': '0.65', 'name': 'drum-cartridge', 'id': 'dc1'},
+     {'visible': 'false', 'open': 'false', 'name': 'bypass-tray', 'closed': 'false', 'id': 'bt1'},
+     {'visible': 'false', 'unlocked': 'false', 'locked': 'false', 'name': 'tone-cartridge', 'id': 'tc1'}]
