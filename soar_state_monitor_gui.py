@@ -56,6 +56,9 @@ class Application(tk.Frame, object):
 
         print("Updating")
 
+        server_predicates = self.server.get_all_predicates()
+        print("Predicates: {}".format(server_predicates))
+
         server_vars = self.server.get_all()
 
         index = 0
@@ -114,8 +117,7 @@ class Application(tk.Frame, object):
         server_vars = self.server.get_all()
         self.state_vars = server_vars
 
-        server_predicates = self.server.get_all_predicates()
-        print("Predicates: {}".format(server_predicates))
+
 
 
         print("Initializing interface grid")
