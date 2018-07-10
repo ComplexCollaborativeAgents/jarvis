@@ -9,7 +9,7 @@ class input_writer(object):
         self._soar_agent = soar_agent
         self._config = config
         self._input_link = soar_agent.get_input_link()
-        self.new_interaction = None
+        self.new_interactions = []
         self.tracker_server = tracker_server
         self.set_time = None
         self.input_vars = self.load_input_vars_file()
@@ -35,21 +35,21 @@ class input_writer(object):
         self.timestamp, current_state_list = self.tracker_server.get_all_since(self.timestamp)
         self.write_time_to_input_link()
         self.write_world_info_to_input_link(current_state_list)
-        if self.new_interaction is not None:
+        if len(self.new_interactions) > 0:
             self.write_interaction_to_input_link()
 
     def write_interaction_to_input_link(self):
         self.delete_all_children(self._interaction_link)
-        logging.debug("[input_writer] :: writing interaction {}".format(self.new_interaction))
-        if (self.new_interaction == "get-all"):
-            self._interaction_link.CreateStringWME("request", "get-all")
-        self.new_interaction = None
+        logging.debug("[input_writer] :: writing interactions {}".format(self.new_interactions))
+        if len(self.new_interactions) > 0:
+            for interaction in self.new_interactions:
+                self._interaction_link.CreateStringWME("request", interaction)
+        self.new_interactions = []
 
     def write_time_to_input_link(self):
         time_WME = self._input_link.FindByAttribute("time", 0)
         if time_WME is not None:
             time_WME.DestroyWME()
-
         self._input_link.CreateStringWME("time", str(self.timestamp))
 
     def write_world_info_to_input_link(self, current_state_list):

@@ -2,12 +2,10 @@
 <soaragent sourceCommandChangesDirectory="false">
   <startfile path="load.soar" />
   <members>
-    <member path="actions" />
     <member path="load.soar" />
     <member path="wait.soar" />
     <member path="init-agent.soar" />
     <member path="elaborations/elaborate-state.soar" />
-    <member path="actions/open" />
     <member path="maintain-world-state/elaborations.soar" />
   </members>
 </soaragent>

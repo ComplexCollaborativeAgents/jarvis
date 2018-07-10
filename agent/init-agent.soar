@@ -28,7 +28,7 @@ sp {apply*init-agent
  	(<tc>	^visible false
         	^locked.value false
          	^unlocked.value false
-          	^name tone-cartridge
+          	^name toner-cartridge
            	^id tc1)
   	(<bt>	^visible false
          	^open.value false

@@ -1,0 +1,17 @@
+##!
+# @file
+#
+# @created smohan 20180628
+
+
+sp {world*propose*instruct-close
+	(state <s>	^name generate-instruction
+            	^world <w>
+             	^desired <d>)
+ 	(<w>	^open <f>)
+  	(<f>	^name front-door)
+-->
+	(<s>	^operator <op> +)
+ 	(<op>	^name close
+        	^component-name front-door)
+  }

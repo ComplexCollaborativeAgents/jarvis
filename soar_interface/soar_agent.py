@@ -130,21 +130,21 @@ class soar_agent(object):
             self.stop_requested = False
 
     def get_all(self):
-        self._input_writer.new_interaction = "get-all"
-        while self._output_reader.response is None or len(self._output_reader.response) <= 0:
+        self._input_writer.new_interactions.append("get-all")
+        print("in get all")
+        while 'state' not in self._output_reader.response or len(self._output_reader.response['state']) <= 0:
             pass
-        response = self._output_reader.response
-        self._output_reader.response = None
+        response = self._output_reader.response['state']
+        del self._output_reader.response['state']
         logging.debug("[soar_agent] :: state is {}".format(response))
         return response
 
     def get_all_predicates(self):
-        self._input_writer.new_interaction = "get-all"
-        while self._output_reader.response is None or len(self._output_reader.response) <= 0:
+        self._input_writer.new_interactions.append("get-all")
+        while 'state' not in self._output_reader.response or len(self._output_reader.response['state']) <= 0:
             pass
-        response = self._output_reader.response
-        self._output_reader.response = None
-
+        response = self._output_reader.response['state']
+        del self._output_reader.response['state']
         predicate_response = self.convert_to_predicates(response)
         logging.debug("[soar_agent] :: predicates are {}".format(predicate_response))
         return predicate_response
@@ -184,6 +184,15 @@ class soar_agent(object):
                     locked_string = "locked_state({},{})".format(id, 'unlocked')
                     predicate_list.append(locked_string)
         return predicate_list
+
+    def get_next_instruction(self):
+        self._input_writer.new_interactions.append('get-next-instruction')
+        while  'next-instruction' not in self._output_reader.response or len(self._output_reader.response['next-instruction']) <= 0:
+            pass
+        response = self._output_reader.response['next-instruction']
+        del self._output_reader.response['next-instruction']
+        logging.debug("[soar_agent] :: next-instruction is {}".format(response))
+        return response
 
 
 

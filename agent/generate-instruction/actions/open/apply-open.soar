@@ -4,10 +4,10 @@
 # @created smohan 20180328
 
 sp {world*apply*instruct-open
-    (state <s>    ^name coach-ara
-                  ^operator <op>
+    (state <s>  -^name generate-instruction  
+				^operator <op>
                   ^io.output-link <ol>)
-    (<op>     ^name instruct-open
+    (<op>     ^name open
               ^component-name <name>)
 -->
     (<ol>    ^instruction <i>)

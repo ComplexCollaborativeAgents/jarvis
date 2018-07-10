@@ -1,0 +1,19 @@
+##!
+# @file
+#
+# @created smohan 20180702
+
+sp {elaborate*output-link*next-instruction
+    :o-support
+    (state <s>    ^name coach-ara
+                  ^next-instruction <ni>
+                  ^io <io>)
+    (<io>    ^output-link <ol>)
+    (<ni>	^name <act-name>
+          	^component-name <comp-name>)
+-->
+    (<ol>    ^next-instruction <ci>)
+    (<s>	^next-instruction <ni> -)
+    (<ci>	^action <act-name>
+          	^component <comp-name>)
+    }

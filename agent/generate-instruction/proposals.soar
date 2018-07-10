@@ -1,0 +1,12 @@
+##!
+# @file
+#
+# @created smohan 20180702
+
+sp {generate-instruction*propose*set-desired
+	(state <s>	^name generate-instruction
+            	-^desired <any>)
+-->
+	(<s>	^operator <op> +)
+ 	(<op>	^name set-desired-state)
+  }

@@ -1,0 +1,18 @@
+##!
+# @file: 
+#
+# @created smohan 20180702
+
+source "proposals.soar"
+
+source "propose-generate-instruction.soar"
+
+source "actions/load.soar"
+
+source "default/selection.soar"
+
+source "default/selection-iterative-deepening.soar"
+
+source "set-desired-state.soar"
+
+source "write-action-instruction-superstate.soar"

@@ -30,16 +30,22 @@ class soar_state_server:
 
 
         def get_all():
+            logging.debug("[soar_server] :: received get_all from client")
             return soar_agent.get_all()
 
         def get_all_predicates():
             return soar_agent.get_all_predicates()
+
+        def get_next_instruction():
+            logging.info("[soar_state_server] :: requesting next instruction from agent")
+            return soar_agent.get_next_instruction()
 
         def dummy():
             logging.info("[soar_state_server] :: server ending.")
 
         self.server.register_function(get_all, 'get_all')
         self.server.register_function(get_all_predicates, 'get_all_predicates')
+        self.server.register_function(get_next_instruction, 'get_next_instruction')
 
     def run(self):
         while not self.quit:

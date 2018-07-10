@@ -7,18 +7,30 @@ sp {elaborate*output-link*clear
     :o-support
     (state <s>    ^name coach-ara
                   ^io.output-link <ol>)
-    (<ol>    ^component <c>)
+    (<ol>    ^<< state next-instruction >> <c>)
     (<c>    ^status complete)
 -->
-    (<ol>    ^component <c> -)
+    (<ol>    ^state <c> -)
     }
+
+sp {elaborate*output-link*state*command
+	:o-support
+	(state <s>	^name coach-ara
+            	^io <io>)
+ 	(<io> 	^output-link <ol>
+         	^input-link <il>)
+  	(<il>	^time <t>
+         	^interaction.request get-all)
+-->
+	(<ol>	^state <state>)
+ }
 
 sp {elaborate*output-link*component
     :o-support
     (state <s>    ^name coach-ara
                   ^world <w>
                   ^io <io>)
-    (<io>    ^output-link <ol>
+    (<io>    ^output-link.state <ol>
              ^input-link <il>)
     (<il>	^time <t>
           	^interaction.request get-all)
@@ -36,7 +48,7 @@ sp {elaborate*output-link*state
     (state <s>    ^name coach-ara
                   ^world <w>
                    ^io <io>)
-    (<io>    ^output-link.component <oc>
+    (<io>    ^output-link.state.component <oc>
              ^input-link <il>)
     (<il>	^time <t>
           	^interaction.request get-all)
@@ -53,7 +65,7 @@ sp {elaborate*output-link*visible
     (state <s>    ^name coach-ara
                   ^world <w>
                    ^io <io>)
-    (<io>    ^output-link.component <oc>
+    (<io>    ^output-link.state.component <oc>
              ^input-link <il>)
     (<il>	^time <t>
           	^interaction.request get-all)

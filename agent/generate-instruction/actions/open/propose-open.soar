@@ -1,0 +1,19 @@
+##!
+# @file
+#
+# @created smohan 20180328
+
+sp {world*propose*instruct-open
+    (state <s>    ^name generate-instruction
+                  ^world <w>
+                  ^desired <d>)
+    (<w>    ^component <f>)
+    (<f>    ^name front-door
+            ^open.value false)
+            #^closed.value <> false)
+-->
+    (<s>    ^operator <op> +)
+    (<op>    ^name open
+             ^component-name front-door
+             ^type printer-action)
+    }

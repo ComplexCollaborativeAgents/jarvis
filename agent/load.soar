@@ -1,7 +1,7 @@
 
 source "wait.soar"
 
-source "actions/load.soar"
+
 
 source "init-agent.soar"
 
@@ -10,3 +10,5 @@ source "elaborations/load.soar"
 source "maintain-world-state/load.soar"
 
 source "proposals.soar"
+
+source "generate-instruction/load.soar"

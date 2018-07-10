@@ -6,3 +6,5 @@
 source "actions.soar"
 
 source "open/load.soar"
+
+source "close/load.soar"

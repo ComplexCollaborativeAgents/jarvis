@@ -5,4 +5,6 @@
 
 source "elaborate-state.soar"
 
-source "elaborate-output-link.soar"
+source "elaborate-output-link-state.soar"
+
+source "elaborate-output-link-next-instruction.soar"
