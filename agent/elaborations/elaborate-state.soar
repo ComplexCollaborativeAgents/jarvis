@@ -15,12 +15,11 @@ sp {all*elaborate*topstate
     (<s> ^topstate <ts>)
  }
 
-
-sp {all*elaborate*world
-    (state <s>    ^superstate.world <w>)
+sp {all*elaborate*models
+	(state <s>	^superstate.models <md>)
 -->
-    (<s>    ^world <w>)
-    }
+	(<s>	^models <md>)
+ }
 
 sp {all*elaborate*tick
     :o-support

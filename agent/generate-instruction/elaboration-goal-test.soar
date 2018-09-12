@@ -1,0 +1,19 @@
+##!
+# @file
+#
+# @created smohan 20180719
+
+sp {generate-instruction*test*goal
+	(state <s>	^name generate-instruction
+				^world <w>
+				^desired <d>)
+	(<d>	^component <comp>
+      		^{<state> <> component} <comp>)
+ 	(<comp>	^name <comp-name>)
+ 	(<w>	^component <wcomp>
+       		^<state> <wcomp>)
+  	(<wcomp>	^name <comp-name>)
+-->
+	(<s>	^success <d>)
+ }
+            	

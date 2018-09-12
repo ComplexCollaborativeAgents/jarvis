@@ -11,7 +11,7 @@ source "init.soar"
 
 source "default/selection.soar"
 
-source "default/selection-iterative-deepening.soar"
+source "default_old/selection-iterative-deepening.soar"
 
 source "search-control.soar"
 

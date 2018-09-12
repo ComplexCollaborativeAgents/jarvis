@@ -1,0 +1,16 @@
+##!
+# @file
+#
+# @created smohan 20180712
+
+#sp {world*apply*instruct-look-at
+#	(state <s>	-^name generate-instruction
+#             	^operator <op>
+#              	^io.output-link <ol>)
+# 	(<op>	^name look-at
+#        	^component-name <name>)
+#-->
+#	(<ol>	^instruction <i>)
+# 	(<i>	^action look-at
+#       		^component <name>)
+#  }

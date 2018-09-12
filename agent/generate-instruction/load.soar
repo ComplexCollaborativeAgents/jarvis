@@ -11,8 +11,12 @@ source "actions/load.soar"
 
 source "default/selection.soar"
 
-source "default/selection-iterative-deepening.soar"
+source "default_old/selection-iterative-deepening.soar"
 
 source "set-desired-state.soar"
 
 source "write-action-instruction-superstate.soar"
+
+source "elaborations.soar"
+
+source "elaboration-goal-test.soar"

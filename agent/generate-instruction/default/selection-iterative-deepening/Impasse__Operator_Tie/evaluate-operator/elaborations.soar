@@ -24,8 +24,8 @@ sp {evaluate-operator*elaborate*state
 #
 sp {evaluate-operator*elaborate*state*tried-tied-operator
    :default
-   (state <s> ^look-ahead-operator <o> ^operator <o>
-              ^elaborations.two-steps-toward)
+   (state <s> ^look-ahead-operator <o> ^operator <o>)
+              #^elaborations.two-steps-toward)
 -->
    (<s> ^tried-tied-operator <o> +)
 }

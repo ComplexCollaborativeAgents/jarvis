@@ -1,0 +1,19 @@
+##!
+# @file
+#
+# @created smohan 20180717
+
+sp {world*propose*take-out
+	(state <s>	^name generate-instruction
+            	^world <w>
+             	^desired <d>)
+ 	(<w>	^in <f>
+       		^accessible <f>)
+  	(<f>	^name <name>)
+-->
+	(<s>	^operator <op> +)
+ 	(<op>	^name take-out
+        	^component-name <name>
+         	^component <f>
+         	^type printer-action)
+  }

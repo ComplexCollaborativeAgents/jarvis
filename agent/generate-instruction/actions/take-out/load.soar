@@ -1,0 +1,8 @@
+##!
+# @file: 
+#
+# @created smohan 20180717
+
+source "propose-take-out.soar"
+
+source "apply-take-out.soar"

@@ -1,0 +1,29 @@
+##!
+# @file
+#
+# @created smohan 20180717
+
+sp {generate-instruction*elaborate*copy*world
+	(state <s>	^name generate-instruction
+            	^superstate.world <w>)
+-->
+	(<s>	^world <w-new>)
+ }
+
+sp {generate-instruction*elaborate*world*components
+	(state <s>	^name generate-instruction
+            	^superstate.world.component <val>
+             	^world <w>)
+-->
+	(<w>	^component <val>)
+ }
+
+
+sp {generate-instruction*elaborate*problem-space
+	(state <s>	^name generate-instruction)
+-->
+	(<s>	^problem-space <ps>)
+ 	(<ps>	^name generate-instruction
+        	^default-state-copy yes
+         	^two-level-attributes world)
+  }

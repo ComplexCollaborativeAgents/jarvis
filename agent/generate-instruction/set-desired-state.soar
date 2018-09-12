@@ -3,14 +3,23 @@
 #
 # @created smohan 20180702
 
+#sp {generate-instruction*apply*set-desired-state
+#	(state <s>	^name generate-instruction
+#            	^operator.name set-desired-state)
+#-->
+#	(<s>	^desired <d>)
+# 	(<d>	^component <com>
+#       		^open <com>)
+#  	(<com>	^name front-door)
+#   }
+
 sp {generate-instruction*apply*set-desired-state
 	(state <s>	^name generate-instruction
             	^operator.name set-desired-state)
 -->
 	(<s>	^desired <d>)
- 	(<d>	^component <com>)
-  	(<com>	^name drum-cartridge
-          	^out false)
+ 	(<d>	^component <com>
+       		^out <com>)
+  	(<com>	^name drum-cartridge)
    }
-
 

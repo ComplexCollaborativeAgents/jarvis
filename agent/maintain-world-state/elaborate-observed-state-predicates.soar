@@ -1,0 +1,65 @@
+##!
+# @file
+#
+# @created smohan 20180911
+sp {world*elaborate*state*unknown*open*closed
+	(state <s>	^name << coach-ara generate-instruction >>
+            	^world <w>)
+ 	(<w>	^component <comp>)
+  	(<comp>	^open.value false
+           	^closed.value false)
+-->
+	(<w>	^unknown <comp>)
+ }
+
+sp {world*elaborate*state*unknown*in*out
+	(state <s>	^name << coach-ara generate-instruction >>
+            	^world <w>)
+ 	(<w>	^component <comp>)
+  	(<comp>	^in.value false
+           	^out.value false)
+-->
+	(<w>	^unknown <comp>)
+ }
+
+
+sp {world*elaborate*state*open
+	(state <s>	^name << coach-ara generate-instruction >>
+            	^world <w>)
+ 	(<w>	^component <comp>)
+  	(<comp>	^open.value <> false
+           	^closed.value false)
+-->
+	(<w>	^open <comp>)
+ }
+
+sp {world*elaborate*state*closed
+	(state <s>	^name << coach-ara generate-instruction >>
+            	^world <w>)
+ 	(<w>	^component <comp>)
+  	(<comp>	^closed.value <> false
+           	^open.value false)
+-->
+	(<w>	^closed <comp>)
+ }
+
+
+sp {world*elaborate*state*in
+	(state <s>	^name << coach-ara generate-instruction >>
+            	^world <w>)
+ 	(<w>	^component <comp>)
+  	(<comp>	^in.value <> false
+           	^out.value false)
+-->
+	(<w>	^in <comp>)
+ }
+
+sp {world*elaborate*state*out
+	(state <s>	^name << coach-ara generate-instruction >>
+            	^world <w>)
+ 	(<w>	^component <comp>)
+  	(<comp>	^out.value <> false
+           	^in.value false)
+-->
+	(<w>	^out <comp>)
+ }

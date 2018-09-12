@@ -4,14 +4,16 @@
 # @created smohan 20180628
 
 
-sp {world*propose*instruct-close
+sp {world*propose*close
 	(state <s>	^name generate-instruction
             	^world <w>
              	^desired <d>)
- 	(<w>	^open <f>)
-  	(<f>	^name front-door)
+ 	(<w>	^open <f>
+       		^accessible <f>)
+  	(<f>	^name <name>)
 -->
 	(<s>	^operator <op> +)
  	(<op>	^name close
-        	^component-name front-door)
+        	^component-name <name>
+         	^type printer-action)
   }

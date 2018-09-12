@@ -17,7 +17,8 @@ sp {apply*init-agent
     (<s>    ^name coach-ara
             ^previous-operator nil
             ^world <ws>
-            ^topstate <ts>)
+            ^models <mods>
+            ^topstate <s>)
 	### printer component model
 	(<ws>	^component <tc>
        		^component <bt>
@@ -55,5 +56,7 @@ sp {apply*init-agent
            	^visible false
             ^name front-door
             ^id fd1)
-
+    (<mods>	^front-door <fd-mod>)
+   	(<fd-mod>	^occludes drum-cartridge
+              	^occludes toner-cartridge)
     }

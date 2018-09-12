@@ -1,0 +1,27 @@
+##!
+# @file
+#
+# @created smohan 20180912
+
+sp {all-states*elaborate*accessibility*not-occluded
+	(state <s>	^topstate <ts>
+            	^name generate-instruction
+            	^world <w>)
+ 	(<w>	^component <c>)
+  	(<c>	^name <cname>)
+  -{(<ts>	^models <mods>)
+   	(<mods>	^<oname>.occludes <cname>)}
+-->
+	(<w>	^accessible <c>)
+ }
+
+sp {all-states*elaborate*accessibility*visible
+	(state <s>	^name << generate-instruction coach-ara >>
+            	^world <w>)	
+	(<w>	^component <c>)
+ 	(<c>	^visible true)
+-->
+	(<w>	^accessible <c>)
+ }
+             
+            	

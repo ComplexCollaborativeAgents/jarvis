@@ -7,7 +7,7 @@ sp {generate-instruction*write-instruction*superstate
 	(state <s>	^name generate-instruction
             	^operator <op>
              	^superstate <ss>)
- 	(<op>	^type printer-action)
+ 	(<op>	^type << printer-action visual-action >>)
 -->
 	(<ss>	^next-instruction <op>)
  }

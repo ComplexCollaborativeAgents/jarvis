@@ -3,14 +3,14 @@
 #
 # @created smohan 20180628
 
-sp {world*apply*instruct-close
-	(state <s>	-^name generate-instruction
-            	^operator <op>
-             	^io.output-link <ol>)
- 	(<op>	^name close
-        	^component-name <name>)
--->
-	(<ol>	^instruction <i>)
- 	(<i>	^action close
-       		^component <name>)
-  }
+#sp {world*apply*instruct-close
+#	(state <s>	-^name generate-instruction
+#            	^operator <op>
+#             	^io.output-link <ol>)
+# 	(<op>	^name close
+#        	^component-name <name>)
+#-->
+#	(<ol>	^instruction <i>)
+# 	(<i>	^action close
+#       		^component <name>)
+#  }

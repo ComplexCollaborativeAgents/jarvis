@@ -13,3 +13,9 @@ source "update-visibility.soar"
 source "update-state.soar"
 
 source "complete-maintain-world-state.soar"
+
+source "elaborate-observed-state-predicates.soar"
+
+source "elaborate-assumed-state-predicates.soar"
+
+source "elaborate-inferred-accessibility-predicates.soar"

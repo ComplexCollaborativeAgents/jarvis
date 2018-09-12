@@ -1,0 +1,24 @@
+##!
+# @file
+#
+# @created smohan 20180911
+
+sp {generate-instruction*elaborate*unknown-state*front-door
+	(state <s>	^name generate-instruction
+            	^world <w>)
+ 	(<w>	^component <f>
+       		^unknown <f>)
+  	(<f>	^name << front-door papertray document-feeder bypass-tray >>)
+-->
+	(<w>	^closed <f>)
+ }
+
+sp {generate-instruction*elaborate*unknown-state*drum-cartridge
+	(state <s>	^name generate-instruction
+            	^world <w>)
+ 	(<w>	^component <f>
+       		^unknown <f>)
+  	(<f>	^name << drum-cartridge toner-cartridge >>)
+-->
+	(<w>	^in <f>)
+ }

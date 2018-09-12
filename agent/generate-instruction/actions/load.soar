@@ -8,3 +8,7 @@ source "actions.soar"
 source "open/load.soar"
 
 source "close/load.soar"
+
+source "look-at/load.soar"
+
+source "take-out/load.soar"

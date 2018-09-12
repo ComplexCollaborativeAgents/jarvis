@@ -3,17 +3,25 @@
 #
 # @created smohan 20180328
 
-sp {world*propose*instruct-open
+sp {world*propose*open
     (state <s>    ^name generate-instruction
                   ^world <w>
+                  ^models <m>
                   ^desired <d>)
-    (<w>    ^component <f>)
-    (<f>    ^name front-door
-            ^open.value false)
-            #^closed.value <> false)
+    (<w>    ^closed <f>
+            ^accessible <f>)
+    (<f>    ^name <name>)
 -->
     (<s>    ^operator <op> +)
     (<op>    ^name open
-             ^component-name front-door
+             ^component <f>
+             ^component-name <name>
              ^type printer-action)
     }
+
+#sp {world*propose*instruct-open
+#	(state <s>	^name generate-instruction
+#            	^world <w>
+#             	^desired <d>)
+# 	(<d>	^component <comp>)
+#  	(<comp>	^

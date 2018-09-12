@@ -3,15 +3,43 @@
 #
 # @created smohan 20180328
 
-sp {world*apply*instruct-open
-    (state <s>  -^name generate-instruction  
+#sp {world*apply*instruct-open
+#    (state <s>  -^name generate-instruction  
+#				^operator <op>
+#                  ^io.output-link <ol>)
+#    (<op>     ^name open
+#              ^component-name <name>)
+#-->
+#    (<ol>    ^instruction <i>)
+#    (<i>    ^action open
+#            ^component <name>)
+#    }
+#    
+
+sp {world*apply*model
+	(state <s>	^name <> generate-instruction 
 				^operator <op>
-                  ^io.output-link <ol>)
-    (<op>     ^name open
-              ^component-name <name>)
+            	^world <w>)
+ 	(<op>	^name open
+        	^component <f>)
+  	(<w>	^closed <f>)
 -->
-    (<ol>    ^instruction <i>)
-    (<i>    ^action open
-            ^component <name>)
-    }
-    
+	(<w>	^closed <f> -
+      		^open <f>)
+ }
+
+sp {world*apply*model*accessibility
+	(state <s>	^name <> generate-instruction
+            	^operator <op>
+             	^world <w>
+              	^models <m>)
+ 	(<m>	^<cname> <model>)
+  	(<model> ^occludes <aname>)
+   	(<op>	^name open
+          	^component <comp>)
+    (<comp>	^name <cname>)
+    (<w>	^component <acomp>)
+    (<acomp> ^name <aname>)
+-->
+	(<w>	^accessible <acomp>)
+ }

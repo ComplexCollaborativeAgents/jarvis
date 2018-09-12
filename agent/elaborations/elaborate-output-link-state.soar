@@ -7,10 +7,10 @@ sp {elaborate*output-link*clear
     :o-support
     (state <s>    ^name coach-ara
                   ^io.output-link <ol>)
-    (<ol>    ^<< state next-instruction >> <c>)
+    (<ol>    ^{<< state next-instruction >> <any>} <c>)
     (<c>    ^status complete)
 -->
-    (<ol>    ^state <c> -)
+    (<ol>    ^<any> <c> -)
     }
 
 sp {elaborate*output-link*state*command

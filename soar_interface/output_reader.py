@@ -2,6 +2,7 @@ from soar_agent import sml
 import logging
 import random
 import json
+import soar_agent
 
 
 class output_reader(object):
@@ -26,7 +27,7 @@ class output_reader(object):
 
     def process_state_description(self, commandID):
         state_list = []
-        print("generating state description")
+        #print("generating state description")
         for i in range(0, commandID.GetNumberChildren()):
             component_dict = {}
             componentID = commandID.GetChild(i).ConvertToIdentifier()
@@ -36,7 +37,7 @@ class output_reader(object):
                     attribute = child.GetAttribute()
                     value = child.GetValueAsString()
                     component_dict[attribute] = value
-                print(component_dict)
+                #print(component_dict)
                 state_list.append(component_dict)
         return state_list
 
@@ -48,4 +49,6 @@ class output_reader(object):
                 dict['action'] = child.GetValueAsString()
             if child.GetAttribute() == 'component':
                 dict['component'] = child.GetValueAsString()
+
+        #self._soar_agent._input_writer.new_interactions.remove('get-next-instruction')
         return dict

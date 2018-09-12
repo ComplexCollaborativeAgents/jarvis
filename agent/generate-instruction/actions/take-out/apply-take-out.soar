@@ -1,0 +1,16 @@
+##!
+# @file
+#
+# @created smohan 20180907
+
+sp {world*take-out*model
+	(state <s>	^name <> generate-instruction
+				^operator <op>
+            	^world <w>)
+ 	(<op>	^name take-out
+        	^component <f>)
+  	(<w>	^in <f>)
+-->
+	(<w>	^in <f> -
+      		^out <f>)
+ }

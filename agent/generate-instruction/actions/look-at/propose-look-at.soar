@@ -1,0 +1,18 @@
+##!
+# @file
+#
+# @created smohan 20180712
+sp {world*propose*look-at
+    (state <s>    ^name geneerate-instruction
+                  ^world <w>
+                  ^desired <d>
+                  ^models <md>)
+    (<w>    ^unknown <f>)
+    (<f>    ^name <name>)
+    (<md>	^<name> <any>)
+-->
+    (<s>    ^operator <op> +)
+    (<op>    ^name look-at
+             ^component-name <name>
+             ^type visual-action)
+    }
