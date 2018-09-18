@@ -1,4 +1,5 @@
-# Coach AR 
+# JARVIS 
+(Just an Augmented Reality/Virtual Instruction System)
 
 
 ## Install and Build
