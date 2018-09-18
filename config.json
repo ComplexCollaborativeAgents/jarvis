@@ -1,7 +1,7 @@
 {
     "Soar":{
     	"path":"/Users/smohan/Soar/soar9.6/bin",
-    	"sleep-time":0.1
+    	"sleep-time":0.001
     },
 
     "SoarAgent": {
@@ -17,6 +17,6 @@
     "Servers":{
       "output_port": 30000,
       "input_port": 28000,
-      "input_host": "localhost"
+      "input_host": "caudell"
     }
 }

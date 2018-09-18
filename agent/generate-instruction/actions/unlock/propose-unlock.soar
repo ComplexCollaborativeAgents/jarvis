@@ -1,0 +1,21 @@
+##!
+# @file
+#
+# @created smohan 20180914
+
+
+sp {generate-instruction*propose*unlock
+    (state <s>    ^name generate-instruction
+                  ^world <w>
+                  ^desired <d>)
+    (<w>    ^component <lock>
+            ^accessible <lock>
+            ^locked <lock>)
+    (<lock>    ^name <name>)
+-->
+    (<s>    ^operator <op> +)
+    (<op>    ^name unlock
+             ^component-name <name>
+             ^component <lock>
+             ^type printer-action)
+    }

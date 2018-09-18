@@ -1,0 +1,33 @@
+##!
+# @file
+#
+# @created smohan 20180914
+
+sp {world*unlock*model
+    (state <s>    ^name <> generate-insruction
+                  ^operator <op>
+                  ^world <w>)
+    (<op>    ^name unlock
+             ^component <lock>)
+    (<w>    ^locked <lock>)
+-->
+    (<w>    ^locked <lock> -
+            ^unlocked <lock>)
+    }
+
+sp {world*unlock*model*restrictability
+    (state <s>    ^name <> generate-instruction
+                ^operator <op>
+                 ^world <w>
+                  ^models <m>)
+     (<m>    ^<cname> <model>)
+      (<model> ^restricts.component <aname>)
+       (<op>    ^name unlock
+              ^component <comp>)
+    (<comp>    ^name <cname>)
+    (<w>    ^component <acomp>)
+    (<acomp> ^name <aname>)
+    (<w> ^restricted <acomp>)
+-->
+    (<w>    ^restricted <acomp> -)
+ }

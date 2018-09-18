@@ -22,6 +22,17 @@ sp {world*elaborate*state*unknown*in*out
 	(<w>	^unknown <comp>)
  }
 
+sp {world*elaborate*state*unknown*locked*unlocked
+    (state <s>    ^name << coach-ara generate-instruction >>
+                ^world <w>)
+     (<w>    ^component <comp>)
+      (<comp>    ^locked.value false
+               ^unlocked.value false)
+-->
+    (<w>    ^unknown <comp>)
+ }
+
+
 
 sp {world*elaborate*state*open
 	(state <s>	^name << coach-ara generate-instruction >>
@@ -63,3 +74,24 @@ sp {world*elaborate*state*out
 -->
 	(<w>	^out <comp>)
  }
+
+sp {world*elaborate*state*locked
+    (state <s>    ^name << coach-ara generate-instruction >>
+                ^world <w>)
+     (<w>    ^component <comp>)
+     (<comp>    ^locked.value <> false
+               ^unlocked.value false)
+-->
+    (<w>    ^locked <comp>)
+ }
+
+sp {world*elaborate*state*unlocked
+    (state <s>    ^name << coach-ara generate-instruction >>
+                ^world <w>)
+     (<w>    ^component <comp>)
+      (<comp>    ^unlocked.value <> false
+               ^locked.value false)
+-->
+    (<w>    ^unlocked <comp>)
+ }
+    

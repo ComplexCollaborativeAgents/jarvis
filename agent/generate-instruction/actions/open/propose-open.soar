@@ -10,7 +10,7 @@ sp {world*propose*open
                   ^desired <d>)
     (<w>    ^closed <f>
             ^accessible <f>)
-    (<f>    ^name <name>)
+    (<f>    ^name <name> )
 -->
     (<s>    ^operator <op> +)
     (<op>    ^name open

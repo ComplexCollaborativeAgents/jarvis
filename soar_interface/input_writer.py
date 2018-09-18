@@ -53,13 +53,20 @@ class input_writer(object):
         self._input_link.CreateStringWME("time", str(self.timestamp))
 
     def write_world_info_to_input_link(self, current_state_list):
+        #print(current_state_list)
         for input_var in self.input_vars["variable_list"]:
             input_var_name = str(input_var["name"])
             input_states = input_var["states"]
 
             for state in input_states:
                 key = (input_var_name + " " + str(state)).replace("-", " ").title()
-                value = current_state_list.get(key)
+
+                if input_var_name == "toner-cartridge-lock":
+                    value = current_state_list.get(str(state).title())
+                else:
+                    value = current_state_list.get(key)
+
+
                 logging.debug("[input_writer] :: {}:{}".format(key, value))
                 if value is not None:
                     var_id = self.input_vars_id_map.get(input_var_name)
@@ -67,7 +74,10 @@ class input_writer(object):
                     if var_id is None:
                         var_id = self._world_link.CreateIdWME("component")
                         var_id.CreateStringWME("name", input_var_name)
+                        #print(self.input_vars_id_map)
                         self.input_vars_id_map[input_var_name] = var_id
+                        # print(input_var_name, var_id)
+                        # print(self.input_vars_id_map)
 
                     attribute_name = str(state).replace(" ", "_").lower()
 
@@ -109,7 +119,10 @@ class input_writer(object):
             found_var = False
             for state in input_states:
                 key = (var_name + " " + str(state)).replace("-", " ").title()
-                value = current_state_list.get(key)
+                if var_name == "toner-cartridge-lock":
+                    value = current_state_list.get(str(state).title())
+                else:
+                    value = current_state_list.get(key)
                 # print(key, value)
                 if value is not None:
                     found_var = True

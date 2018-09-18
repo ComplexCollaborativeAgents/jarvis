@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<soaragent sourceCommandChangesDirectory="false">
+<soaragent>
   <startfile path="load.soar" />
   <members>
     <member path="load.soar" />
@@ -7,6 +7,7 @@
     <member path="init-agent.soar" />
     <member path="elaborations/elaborate-state.soar" />
     <member path="maintain-world-state/elaborations.soar" />
+    <member path="generate-instruction/default/selection/all/declarations.soar" />
   </members>
 </soaragent>
 

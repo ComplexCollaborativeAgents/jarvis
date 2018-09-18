@@ -15,6 +15,7 @@ sp {all-states*elaborate*accessibility*not-occluded
 	(<w>	^accessible <c>)
  }
 
+
 sp {all-states*elaborate*accessibility*visible
 	(state <s>	^name << generate-instruction coach-ara >>
             	^world <w>)	

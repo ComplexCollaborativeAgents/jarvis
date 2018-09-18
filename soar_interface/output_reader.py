@@ -22,7 +22,7 @@ class output_reader(object):
             if commandName == "next-instruction":
                 output_dict['next-instruction'] = self.processNextInstruction(commandID)
             commandID.AddStatusComplete()
-        print("output is {}".format(output_dict))
+        #print("output is {}".format(output_dict))
         self.response = output_dict
 
     def process_state_description(self, commandID):

@@ -8,7 +8,9 @@ sp {world*propose*take-out
             	^world <w>
              	^desired <d>)
  	(<w>	^in <f>
-       		^accessible <f>)
+       		^accessible <f>
+            ^component <f>
+            -^restricted <f>)
   	(<f>	^name <name>)
 -->
 	(<s>	^operator <op> +)

@@ -19,3 +19,5 @@ source "elaborate-observed-state-predicates.soar"
 source "elaborate-assumed-state-predicates.soar"
 
 source "elaborate-inferred-accessibility-predicates.soar"
+
+source "elaborate-inferred-restrictability-predicates.soar"

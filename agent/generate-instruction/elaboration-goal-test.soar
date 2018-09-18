@@ -15,5 +15,6 @@ sp {generate-instruction*test*goal
   	(<wcomp>	^name <comp-name>)
 -->
 	(<s>	^success <d>)
+   # (interrupt)
  }
             	

@@ -14,13 +14,11 @@ with open(CONFIG_FILE) as config_file:
     except ValueError, e:
         logging.fatal("[soar_client] :: Cannot find local soar installation")
 
-#import Python_sml_ClientInterface as sml
+
 from threading import Thread
 import time
 import output_reader, input_writer
 import random
-
-
 
 
 class soar_agent(object):
@@ -29,7 +27,6 @@ class soar_agent(object):
         self._username = username
 
         ## create Soar kernel, agent, load rules
-
         self._kernel = self.create_kernel()
         self._agent = self.create_agent(str(self._config['SoarAgent']['name']))
         self._agentFilepath = str(self._config['SoarAgent']['file'])
@@ -64,6 +61,7 @@ class soar_agent(object):
         self._agent.LoadProductions(os.path.realpath(agentFile));
 
     def run_SoarJavaDebugger(self):
+        self.stop()
         self._agent.SpawnDebugger(self._kernel.GetListenerPort())
 
     def register_output_callback(self, function, caller_object=None):

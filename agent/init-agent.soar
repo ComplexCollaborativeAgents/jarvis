@@ -25,12 +25,18 @@ sp {apply*init-agent
          	^component <dc>
           	^component <df>
            	^component <pt>
-            ^component <fd>)
+            ^component <fd>
+            ^component <lk>)
  	(<tc>	^visible false
-        	^locked.value false
-         	^unlocked.value false
+        	^in.value false
+         	^out.value false
           	^name toner-cartridge
            	^id tc1)
+    (<lk>    ^visible false
+             ^locked.value false
+             ^unlocked.value false
+             ^name toner-cartridge-lock
+             ^id tcl1)
   	(<bt>	^visible false
          	^open.value false
           	^closed.value false
@@ -58,5 +64,10 @@ sp {apply*init-agent
             ^id fd1)
     (<mods>	^front-door <fd-mod>)
    	(<fd-mod>	^occludes drum-cartridge
-              	^occludes toner-cartridge)
+              	^occludes toner-cartridge
+                ^occludes toner-cartridge-lock)
+    (<mods>    ^toner-cartridge-lock <tl>)
+    (<tl>      ^restricts <res>)
+    (<res>     ^state locked
+               ^component toner-cartridge)
     }

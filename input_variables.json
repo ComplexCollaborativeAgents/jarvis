@@ -2,11 +2,12 @@
   "confidence_cutoff_true": 0.8,
   "variable_list":
   [
-    {"name": "toner-cartridge", "states": ["locked", "unlocked"]},
+    {"name": "toner-cartridge", "states": ["in", "out"]},
     {"name": "bypass-tray", "states": ["open", "closed"]},
     {"name": "drum-cartridge", "states":["out", "in"]},
     {"name": "document-feeder", "states":["open", "closed"]},
     {"name": "papertray", "states":["open", "closed"]},
-    {"name": "front-door", "states":["open", "closed"]}
+    {"name": "front-door", "states":["open", "closed"]},
+    {"name": "toner-cartridge-lock", "states":["locked", "unlocked"]}
   ]
 }

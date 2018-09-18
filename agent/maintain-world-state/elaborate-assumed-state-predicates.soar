@@ -22,3 +22,13 @@ sp {generate-instruction*elaborate*unknown-state*drum-cartridge
 -->
 	(<w>	^in <f>)
  }
+
+sp {generate-instruction*elaborate*unknown-state*toner-cartridge-lock
+    (state <s>    ^name generate-instruction
+                  ^world <w>)
+    (<w>    ^component <lock>
+            ^unknown <lock>)
+    (<lock>    ^name toner-cartridge-lock)
+-->
+    (<w>    ^locked <lock>)
+    }

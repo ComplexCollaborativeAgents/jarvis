@@ -1,0 +1,20 @@
+##!
+# @file
+#
+# @created smohan 20180914
+
+
+sp {all-states*elaborate*restrictability
+    (state <s>    ^topstate <ts>
+                  ^world <w>)
+    (<w>    ^component <c>
+            ^component <other>
+            ^<state> <other>)
+    (<c>    ^name <cname>)
+    (<ts>    ^models <mods>)
+    (<mods>   ^<oname>.restricts <res>)
+    (<res>    ^component <cname>)
+    (<res>    ^state <state>)
+-->
+    (<w>    ^restricted <c>)
+    }

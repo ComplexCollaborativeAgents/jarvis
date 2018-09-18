@@ -20,6 +20,6 @@ sp {generate-instruction*apply*set-desired-state
 	(<s>	^desired <d>)
  	(<d>	^component <com>
        		^out <com>)
-  	(<com>	^name drum-cartridge)
+  	(<com>	^name toner-cartridge)
    }
 

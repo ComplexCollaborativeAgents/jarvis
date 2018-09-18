@@ -19,9 +19,10 @@ with open(CONFIG_FILE) as config_file:
 
 
 def create_connection_with_tracker():
-    url = 'http://{}:{}'.format('localhost', config['Servers']['input_port'])
+    url = 'http://{}:{}'.format(config['Servers']['input_host'], config['Servers']['input_port'])
     tracker_server = xmlrpclib.ServerProxy(url)
-    logging.info("[soar_client] :: Created a connection to the tracker server.")
+    logging.info("[soar_client] :: Created a connection to the tracker server at: {}".format(url))
+    print(tracker_server.get_all())
     return tracker_server
 
 def create_and_run_myserver(soar_agent):

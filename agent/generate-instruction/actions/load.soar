@@ -12,3 +12,5 @@ source "close/load.soar"
 source "look-at/load.soar"
 
 source "take-out/load.soar"
+
+source "unlock/load.soar"
