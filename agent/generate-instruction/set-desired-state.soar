@@ -23,3 +23,10 @@ sp {generate-instruction*apply*set-desired-state
   	(<com>	^name toner-cartridge)
    }
 
+sp {generate-instruction*elaborate*world*previous-operator
+    (state <s>    ^name generate-instruction
+                  ^operator.name set-desired-state)
+-->
+    (<s>    ^previous-operator nil)
+    }
+      

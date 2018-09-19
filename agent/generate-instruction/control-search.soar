@@ -1,0 +1,85 @@
+##!
+# @file
+#
+# @created smohan 20180919
+
+
+sp {generate-instruction*maintain*previous-operator
+    (state <s>    ^name generate-instruction
+                  ^operator <op>
+                  ^previous-operator <pop>)
+    (<op>    ^name << close open put-in take-out lock unlock >>)
+-->
+    (<s>    ^previous-operator <pop> -
+            ^previous-operator <op>)
+    }
+
+sp {generate-instruction*reject*close
+    (state <s>    ^name generate-instruction
+                  ^operator <op> +
+                  ^previous-operator <pop>)
+    (<pop>    ^name open
+              ^component <c>)
+    (<op>    ^name close
+             ^component <c>)
+-->
+    (<s>    ^operator <op> -)}
+
+sp {generate-instruction*reject*open
+    (state <s>    ^name generate-instruction
+                  ^operator <op> +
+                  ^previous-operator <pop>)
+    (<pop>    ^name close
+              ^component <c>)
+    (<op>    ^name open
+             ^component <c>)
+-->
+    (<s>    ^operator <op> -)}
+
+sp {generate-instruction*reject*take-out
+    (state <s>    ^name generate-instruction
+                  ^operator <op> +
+                  ^previous-operator <pop>)
+    (<pop>    ^name put-in
+              ^component <c>)
+    (<op>    ^name take-out
+             ^component <c>)
+-->
+    (<s>    ^operator <op> -)}
+
+sp {generate-instruction*reject*put-in
+    (state <s>    ^name generate-instruction
+                  ^operator <op> +
+                  ^previous-operator <pop>)
+    (<pop>    ^name take-out
+              ^component <c>)
+    (<op>    ^name put-in
+             ^component <c>)
+-->
+    (<s>    ^operator <op> -)}
+
+
+sp {generate-instruction*reject*lock
+    (state <s>    ^name generate-instruction
+                  ^operator <op> +
+                  ^previous-operator <pop>)
+    (<pop>    ^name unlock
+              ^component <c>)
+    (<op>    ^name lock
+             ^component <c>)
+-->
+    (<s>    ^operator <op> -)}
+
+sp {generate-instruction*reject*unlock
+    (state <s>    ^name generate-instruction
+                  ^operator <op> +
+                  ^previous-operator <pop>)
+    (<pop>    ^name lock
+              ^component <c>)
+    (<op>    ^name unlock
+             ^component <c>)
+-->
+    (<s>    ^operator <op> -)}
+
+
+

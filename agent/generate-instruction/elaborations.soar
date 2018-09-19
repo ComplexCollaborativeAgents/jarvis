@@ -18,6 +18,8 @@ sp {generate-instruction*elaborate*world*components
 	(<w>	^component <val>)
  }
 
+            
+
 
 sp {generate-instruction*elaborate*problem-space
 	(state <s>	^name generate-instruction)
@@ -25,5 +27,6 @@ sp {generate-instruction*elaborate*problem-space
 	(<s>	^problem-space <ps>)
  	(<ps>	^name generate-instruction
         	^default-state-copy yes
-         	^two-level-attributes world)
+         	^two-level-attributes world
+            ^one-level-attributes previous-operator)
   }

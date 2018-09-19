@@ -20,3 +20,5 @@ source "write-action-instruction-superstate.soar"
 source "elaborations.soar"
 
 source "elaboration-goal-test.soar"
+
+source "control-search.soar"
