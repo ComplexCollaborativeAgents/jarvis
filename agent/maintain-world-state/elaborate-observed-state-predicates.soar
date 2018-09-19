@@ -35,7 +35,7 @@ sp {world*elaborate*state*unknown*locked*unlocked
 
 
 sp {world*elaborate*state*open
-	(state <s>	^name << coach-ara generate-instruction >>
+	(state <s>	^name << jarvis generate-instruction >>
             	^world <w>)
  	(<w>	^component <comp>)
   	(<comp>	^open.value <> false
@@ -45,7 +45,7 @@ sp {world*elaborate*state*open
  }
 
 sp {world*elaborate*state*closed
-	(state <s>	^name << coach-ara generate-instruction >>
+	(state <s>	^name << jarvis generate-instruction >>
             	^world <w>)
  	(<w>	^component <comp>)
   	(<comp>	^closed.value <> false
@@ -56,7 +56,7 @@ sp {world*elaborate*state*closed
 
 
 sp {world*elaborate*state*in
-	(state <s>	^name << coach-ara generate-instruction >>
+	(state <s>	^name << jarvis generate-instruction >>
             	^world <w>)
  	(<w>	^component <comp>)
   	(<comp>	^in.value <> false
@@ -66,7 +66,7 @@ sp {world*elaborate*state*in
  }
 
 sp {world*elaborate*state*out
-	(state <s>	^name << coach-ara generate-instruction >>
+	(state <s>	^name << jarvis generate-instruction >>
             	^world <w>)
  	(<w>	^component <comp>)
   	(<comp>	^out.value <> false
@@ -76,7 +76,7 @@ sp {world*elaborate*state*out
  }
 
 sp {world*elaborate*state*locked
-    (state <s>    ^name << coach-ara generate-instruction >>
+    (state <s>    ^name << jarvis generate-instruction >>
                 ^world <w>)
      (<w>    ^component <comp>)
      (<comp>    ^locked.value <> false
@@ -86,7 +86,7 @@ sp {world*elaborate*state*locked
  }
 
 sp {world*elaborate*state*unlocked
-    (state <s>    ^name << coach-ara generate-instruction >>
+    (state <s>    ^name << jarvis generate-instruction >>
                 ^world <w>)
      (<w>    ^component <comp>)
       (<comp>    ^unlocked.value <> false

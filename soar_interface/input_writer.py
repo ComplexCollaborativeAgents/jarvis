@@ -35,8 +35,7 @@ class input_writer(object):
         self.timestamp, current_state_list = self.tracker_server.get_all_since(self.timestamp)
         self.write_time_to_input_link()
         self.write_world_info_to_input_link(current_state_list)
-        if len(self.new_interactions) > 0:
-            self.write_interaction_to_input_link()
+        self.write_interaction_to_input_link()
 
     def write_interaction_to_input_link(self):
         self.delete_all_children(self._interaction_link)
@@ -44,7 +43,7 @@ class input_writer(object):
         if len(self.new_interactions) > 0:
             for interaction in self.new_interactions:
                 self._interaction_link.CreateStringWME("request", interaction)
-        self.new_interactions = []
+        del self.new_interactions[:]
 
     def write_time_to_input_link(self):
         time_WME = self._input_link.FindByAttribute("time", 0)

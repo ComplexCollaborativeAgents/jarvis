@@ -5,7 +5,7 @@
 
 sp {elaborate*output-link*next-instruction
     :o-support
-    (state <s>    ^name coach-ara
+    (state <s>    ^name jarvis
                   ^next-instruction <ni>
                   ^io <io>)
     (<io>    ^output-link <ol>)
@@ -13,7 +13,22 @@ sp {elaborate*output-link*next-instruction
           	^component-name <comp-name>)
 -->
     (<ol>    ^next-instruction <ci>)
-    (<s>	^next-instruction <ni> -)
+    (<s>	^next-instruction <ni> -
+             ^request next-instruction -)
     (<ci>	^action <act-name>
           	^component <comp-name>)
+    }
+
+sp {elaborate*output-link*next-instruction*complete
+    :o-support
+    (state <s>    ^name jarvis
+                  ^next-instruction <ni>
+                  ^io <io>)
+    (<io>    ^output-link <ol>)
+    (<ni>    ^name flag-task-complete)
+-->
+    (<ol>    ^next-instruction <ci>)
+    (<s>    ^next-instruction <ni> -)
+    (<ci>    ^action inform
+             ^component complete)
     }

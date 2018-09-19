@@ -14,7 +14,7 @@ sp {propose*init-agent
 sp {apply*init-agent
     (state <s>    ^operator.name init-agent)
 -->
-    (<s>    ^name coach-ara
+    (<s>    ^name jarvis
             ^previous-operator nil
             ^world <ws>
             ^models <mods>

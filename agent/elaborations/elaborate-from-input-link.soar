@@ -1,0 +1,14 @@
+##!
+# @file
+#
+# @created smohan 20180919
+
+sp {jarvis*elaborate*request*next-instruction
+    :o-support
+    (state <s>    ^name jarvis
+                ^world <w>
+                 ^io.input-link.interaction <i>)
+     (<i>    ^request get-next-instruction)
+-->
+     (<s>    ^request next-instruction)
+  }

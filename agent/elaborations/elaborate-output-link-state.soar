@@ -5,7 +5,7 @@
 
 sp {elaborate*output-link*clear
     :o-support
-    (state <s>    ^name coach-ara
+    (state <s>    ^name jarvis
                   ^io.output-link <ol>)
     (<ol>    ^{<< state next-instruction >> <any>} <c>)
     (<c>    ^status complete)
@@ -15,7 +15,7 @@ sp {elaborate*output-link*clear
 
 sp {elaborate*output-link*state*command
 	:o-support
-	(state <s>	^name coach-ara
+	(state <s>	^name jarvis
             	^io <io>)
  	(<io> 	^output-link <ol>
          	^input-link <il>)
@@ -27,7 +27,7 @@ sp {elaborate*output-link*state*command
 
 sp {elaborate*output-link*component
     :o-support
-    (state <s>    ^name coach-ara
+    (state <s>    ^name jarvis
                   ^world <w>
                   ^io <io>)
     (<io>    ^output-link.state <ol>
@@ -45,7 +45,7 @@ sp {elaborate*output-link*component
 
 sp {elaborate*output-link*state
     :o-support
-    (state <s>    ^name coach-ara
+    (state <s>    ^name jarvis
                   ^world <w>
                    ^io <io>)
     (<io>    ^output-link.state.component <oc>
@@ -62,7 +62,7 @@ sp {elaborate*output-link*state
 
 sp {elaborate*output-link*visible
     :o-support
-    (state <s>    ^name coach-ara
+    (state <s>    ^name jarvis
                   ^world <w>
                    ^io <io>)
     (<io>    ^output-link.state.component <oc>

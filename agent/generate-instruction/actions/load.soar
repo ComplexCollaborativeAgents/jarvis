@@ -14,3 +14,7 @@ source "look-at/load.soar"
 source "take-out/load.soar"
 
 source "unlock/load.soar"
+
+source "put-in/load.soar"
+
+source "flag-complete/load.soar"

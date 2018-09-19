@@ -17,7 +17,7 @@ sp {all-states*elaborate*accessibility*not-occluded
 
 
 sp {all-states*elaborate*accessibility*visible
-	(state <s>	^name << generate-instruction coach-ara >>
+	(state <s>	^name << generate-instruction jarvis >>
             	^world <w>)	
 	(<w>	^component <c>)
  	(<c>	^visible true)

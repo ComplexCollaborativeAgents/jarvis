@@ -1,0 +1,21 @@
+##!
+# @file
+#
+# @created smohan 20180918
+
+sp {world*propose*put-in
+    (state <s>    ^name oeugenerate-instruction
+                  ^world <w>
+                  ^desired <d>)
+    (<w>    -^in <f>
+            ^accessible <f>
+            ^component <f>
+            -^restricted <f>)
+    (<f>    ^name <name>)
+-->
+    (<s>    ^operator <op> +)
+    (<op>    ^name put-in
+             ^component-name <name>    
+             ^component <f>
+             ^type printer-action)
+    }

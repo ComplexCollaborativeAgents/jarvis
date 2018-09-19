@@ -8,6 +8,7 @@
     <member path="elaborations/elaborate-state.soar" />
     <member path="maintain-world-state/elaborations.soar" />
     <member path="generate-instruction/default/selection/all/declarations.soar" />
+    <member path="elaborations/elaborate-from-input-link.soar" />
   </members>
 </soaragent>
 

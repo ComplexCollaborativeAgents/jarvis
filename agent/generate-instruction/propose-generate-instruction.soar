@@ -4,11 +4,9 @@
 # @created smohan 20180702
 
 sp {coach-ara*propose*generate-instruction
-	(state <s>	^name coach-ara
+	(state <s>	^name jarvis
             	^world <w>
-             	^io.input-link.interaction <i>
-              	-^next-instruction <any>)
- 	(<i>	^request get-next-instruction)
+             	^request next-instruction)
 -->
 	(<s>	^operator <op> + =)
  	(<op>	^name generate-instruction)

@@ -47,8 +47,8 @@ class Application(tk.Frame, object):
         if len(self.var_to_StringVar_index) > 0 and len(self.var_to_widget_index) > 0:
             for vars in state_var_list:
                 for k,v in vars.items():
-                    if(k == 'name'):
-                        print(v)
+                    # if(k == 'name'):
+                    #     print(v)
                     widget = self.var_to_widget_index[index][k]
                     string_var = self.var_to_StringVar_index[index][k]
                     string_var.set("{}".format(v))

@@ -1,0 +1,18 @@
+##!
+# @file
+#
+# @created smohan 20180918
+
+
+sp {world*propose*flag-complete
+    (state <s>    ^name generate-instruction
+                  ^superstate.name jarvis
+                  ^desired <d>
+                  ^success <d>)
+-->
+    (<s>    ^operator <op> + >)
+    (<op>    ^name flag-task-complete
+             ^desired-state <d>
+             ^type printer-action)
+    }
+             

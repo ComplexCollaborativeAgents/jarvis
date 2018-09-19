@@ -3,8 +3,8 @@
 #
 # @created smohan 20180329
 
-sp {coach-ara*propose*maintain-world-state*1
-	(state <s>	^name coach-ara
+sp {jarvis*propose*maintain-world-state*1
+	(state <s>	^name jarvis
             	^world <w>
              	^io.input-link.world <il>)
  	(<il>	^component <c>)
@@ -20,8 +20,8 @@ sp {coach-ara*propose*maintain-world-state*1
            	^type object-sensed)
   }
 
-sp {coach-ara*propose*maintain-world-state*2
-	(state <s>	^name coach-ara
+sp {jarvis*propose*maintain-world-state*2
+	(state <s>	^name jarvis
             	^world <w>
              	^io.input-link.world <il>)
  	(<w>	^component <c>)
