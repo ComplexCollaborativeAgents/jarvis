@@ -8,6 +8,6 @@ sp {coach-ara*propose*generate-instruction
             	^world <w>
              	^request next-instruction)
 -->
-	(<s>	^operator <op> + =)
+	(<s>	^operator <op> +)
  	(<op>	^name generate-instruction)
   }

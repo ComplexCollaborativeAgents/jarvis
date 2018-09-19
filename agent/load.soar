@@ -12,3 +12,5 @@ source "maintain-world-state/load.soar"
 source "proposals.soar"
 
 source "generate-instruction/load.soar"
+
+source "preferences.soar"

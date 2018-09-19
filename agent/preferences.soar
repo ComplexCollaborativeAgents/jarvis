@@ -1,0 +1,16 @@
+##!
+# @file
+#
+# @created smohan 20180919
+
+
+sp {jarvis*prefer*maintain-world-state
+    (state <s>    ^name jarvis
+                  ^operator <op1> +
+                  ^operator <op2> +)
+    (<op1> ^name generate-instruction)
+    (<op2> ^name maintain-world-state)
+-->
+    (<s> ^operator <op2> > <op1>)
+    }
+           
