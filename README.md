@@ -15,7 +15,7 @@
 * Edit the `Soar`  `path` element in `config.json` to point to your `/local/soar/installation/bin/linux64`
 * Configure a Python2 conda environment
 
-       `conda create --name soarpy2 python=2.7`
+       `conda create --name jarvis_env python=2.7`
 
        `conda install coloredlogs`
     
@@ -23,12 +23,12 @@
 ## Usage
 * Activate the conda environment
   
-      `source activate soarpy2`
+      `source activate jarvis_env`
       
-* Run the state reasoning, planning agent
+* Run jarvis
 
-      `python soar_runner.py`
+      `python jarvis.py`
       
-* Inspect agent state
+* Inspect jarvis' state and interact with it
 
-      `python soar_state_monitor_gui.py`
+      `python jarvis_interface.py`
