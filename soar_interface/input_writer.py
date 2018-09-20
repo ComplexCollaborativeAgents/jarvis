@@ -1,6 +1,7 @@
 from soar_agent import sml
 import xmlrpclib, time, sys
 import json, logging
+from threading import Thread
 
 
 
@@ -18,6 +19,9 @@ class input_writer(object):
 
         self._world_link = self._input_link.CreateIdWME("world")
         self._interaction_link = self._input_link.CreateIdWME("interaction")
+        self.current_state_list=[]
+
+        self.world_input_thread = None
 
 
     def load_input_vars_file(self):
@@ -30,11 +34,19 @@ class input_writer(object):
                 sys.exit()
         return input_vars
 
+    def get_world_info_thread_func(self):
+        self.timestamp, self.current_state_list = self.tracker_server.get_all_since(self.timestamp)
+
     def generate_input(self):
         time.sleep(self._config['Soar']['sleep-time'])
-        self.timestamp, current_state_list = self.tracker_server.get_all_since(self.timestamp)
+        #self.timestamp, current_state_list = self.tracker_server.get_all_since(self.timestamp)
+        #print self.world_input_thread
+        if self.world_input_thread is None or not self.world_input_thread.isAlive():
+            self.world_input_thread = Thread(target = self.get_world_info_thread_func)
+            self.world_input_thread.start()
         self.write_time_to_input_link()
-        self.write_world_info_to_input_link(current_state_list)
+        if len(self.current_state_list) is not 0:
+            self.write_world_info_to_input_link(self.current_state_list)
         self.write_interaction_to_input_link()
 
     def write_interaction_to_input_link(self):
@@ -52,7 +64,6 @@ class input_writer(object):
         self._input_link.CreateStringWME("time", str(self.timestamp))
 
     def write_world_info_to_input_link(self, current_state_list):
-        #print(current_state_list)
         for input_var in self.input_vars["variable_list"]:
             input_var_name = str(input_var["name"])
             input_states = input_var["states"]

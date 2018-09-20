@@ -28,7 +28,8 @@ sp {elaborate*output-link*next-instruction*complete
     (<ni>    ^name flag-task-complete)
 -->
     (<ol>    ^next-instruction <ci>)
-    (<s>    ^next-instruction <ni> -)
+    (<s>    ^next-instruction <ni> -
+            ^request next-instruction -)
     (<ci>    ^action inform
              ^component complete)
     }
