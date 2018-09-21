@@ -1,0 +1,3 @@
+[submodule "ara_state_tracker_tensorflow"]
+	path = ara_state_tracker_tensorflow
+	url = git@gitlab-external.parc.com:augmented-reality-assistant-2017/ara_state_tracker_tensorflow.git
