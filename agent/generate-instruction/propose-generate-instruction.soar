@@ -3,11 +3,13 @@
 #
 # @created smohan 20180702
 
-sp {coach-ara*propose*generate-instruction
+sp {jarvis*propose*generate-instruction
 	(state <s>	^name jarvis
             	^world <w>
-             	^request next-instruction)
+             	^request next-instruction
+                ^desired <d>)
 -->
 	(<s>	^operator <op> +)
- 	(<op>	^name generate-instruction)
+ 	(<op>	^name generate-instruction
+            ^desired <d>)
   }

@@ -19,6 +19,11 @@ with open(CONFIG_FILE) as config_file:
 
 
 def create_connection_with_tracker():
+    '''
+    Connect to the ARA serve that generates a stream of perceptual events.
+    The hostname and port can be specified in ./config.json
+    :return: xmlrpclib.ServerProxy
+    '''
     url = 'http://{}:{}'.format(config['Servers']['input_host'], config['Servers']['input_port'])
     server = xmlrpclib.ServerProxy(url)
     logging.info("[soar_client] :: Created a connection to the tracker server at: {}".format(url))

@@ -22,3 +22,5 @@ source "elaborations.soar"
 source "elaboration-goal-test.soar"
 
 source "control-search.soar"
+
+source "init-generate-instruction.soar"

@@ -1,0 +1,18 @@
+##!
+# @file
+#
+# @created smohan 20180921
+
+
+sp {jarvis*apply*set-task*remove-toner-cartridge
+    (state <s>    ^name set-task
+                  ^task-name remove-toner-cartridge
+                  ^world <w>
+                  ^superstate <ss>)
+    (<w>    ^component <tc>)
+    (<tc>    ^name toner-cartridge)
+-->
+    (<ss>    ^desired <d>)
+    (<d>    ^component <tc>
+            ^out <tc>)
+    }

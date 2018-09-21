@@ -14,3 +14,5 @@ source "proposals.soar"
 source "generate-instruction/load.soar"
 
 source "preferences.soar"
+
+source "set_task/load.soar"

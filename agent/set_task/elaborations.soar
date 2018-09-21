@@ -1,0 +1,19 @@
+##!
+# @file
+#
+# @created smohan 20180921
+
+sp {set-task*elaborate*state
+    (state <s>    ^name set-task
+                  ^superstate.operator <sop>)
+    (<sop>    ^task-name <tname>)
+-->
+    (<s>    ^task-name <tname>)
+    }
+
+sp {set-task*elaborate*world
+    (state <s>    ^name set-task
+                  ^superstate.world <sw>)
+-->
+    (<s>    ^world <sw>)
+    }

@@ -10,6 +10,13 @@ sp {generate-instruction*elaborate*copy*world
 	(<s>	^world <w-new>)
  }
 
+sp {generate-instruction*elaborate*desired
+    (state <s>    ^name generate-instruction
+                  ^superstate.operator.desired <d>)
+-->
+    (<s>    ^desired <d>)
+    }
+
 sp {generate-instruction*elaborate*world*components
 	(state <s>	^name generate-instruction
             	^superstate.world.component <val>

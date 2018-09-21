@@ -6,7 +6,7 @@
 
     "SoarAgent": {
       "file": "agent/load.soar",
-      "name": "coachAR",
+      "name": "jarvis",
       "input_vars": "input_variables.json"
     },
 

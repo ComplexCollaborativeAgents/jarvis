@@ -1,0 +1,12 @@
+##!
+# @file
+#
+# @created smohan 20180921
+
+sp {generate-instruction*apply*init-generate-instruction
+    (state <s>    ^name generate-instruction
+                  ^operator.name init-generate-instruction)
+-->
+    (<s>    ^previous-operator nil)
+    }
+      
