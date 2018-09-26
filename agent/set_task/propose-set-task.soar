@@ -1,0 +1,16 @@
+##!
+# @file
+#
+# @created smohan 20180921
+
+sp {jarvis*propose*set-task
+    (state <s>    ^name jarvis
+                  ^world <w>
+                  ^request <r>
+                  -^desired <d>)
+    (<r>    ^name set-task
+            ^task-name <tname>)
+-->
+    (<s>    ^operator <op> +)
+    (<op>    ^name set-task
+             ^task-name <tname>)}

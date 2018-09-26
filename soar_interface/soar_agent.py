@@ -25,28 +25,30 @@ class soar_agent(object):
     def __init__(self, config, username, tracker_server):
         self._config = config
         self._username = username
+        self.setup_soar_agent(tracker_server)
+        self.init_state_maintenance_data_structures()
 
-        ## create Soar kernel, agent, load rules
+    def init_state_maintenance_data_structures(self):
+        self.stop_requested = False
+        self._agent_thread = None
+        self._is_running = False
+
+    def setup_soar_agent(self, tracker_server):
         self._kernel = self.create_kernel()
         self._agent = self.create_agent(str(self._config['SoarAgent']['name']))
         self._agentFilepath = str(self._config['SoarAgent']['file'])
         self.load_agent_rules(self._agentFilepath)
         self._input_link = self._agent.GetInputLink()
         self._output_link = self._agent.GetOutputLink()
-        self._input_writer = input_writer.input_writer(self, config, tracker_server)
-        self._output_reader = output_reader.output_reader(self, config)
+        self._input_writer = input_writer.input_writer(self, self._config, tracker_server)
+        self._output_reader = output_reader.output_reader(self, self._config)
 
-        ## init state maintenance data structures
-        self.stop_requested = False
-        self._agent_thread = None
-        self._is_running = False
 
     def create_kernel(self):
         kernel = sml.Kernel.CreateKernelInNewThread(random.randint(40000, 60000))
         if not kernel or kernel.HadError():
             logging.error("[soar_agent] :: Error creating kernel: " + kernel.GetLastErrorDescription())
             exit(1)
-
         return kernel
 
     def create_agent(self, agent_name):
@@ -85,7 +87,6 @@ class soar_agent(object):
     def shutdown(self):
         self.stop_requested = True
         self._agent.KillDebugger()
-        # self._kernel.DestroyAgent(self._agent)
         self._kernel.Shutdown()
 
     def quit(self):
@@ -128,7 +129,7 @@ class soar_agent(object):
             self.stop_requested = False
 
     def get_all(self):
-        self._input_writer.new_interactions.append("get-all")
+        self._input_writer.new_interactions.append({"name": "get-all"})
         while 'state' not in self._output_reader.response or len(self._output_reader.response['state']) <= 0:
             pass
         response = self._output_reader.response['state']
@@ -183,12 +184,23 @@ class soar_agent(object):
         return predicate_list
 
     def get_next_instruction(self):
-        self._input_writer.new_interactions.append('get-next-instruction')
+        self._input_writer.new_interactions.append({"name": "get-next-instruction"})
         while  'next-instruction' not in self._output_reader.response or len(self._output_reader.response['next-instruction']) <= 0:
             pass
         response = self._output_reader.response['next-instruction']
         del self._output_reader.response['next-instruction']
         logging.debug("[soar_agent] :: next-instruction is {}".format(response))
+        return response
+
+    def set_task(self, state, component):
+        logging.debug("[soar_agent] :: asking to set task {}:{}".format(state, component))
+        if state == 'remove' and component == 'toner_cartridge':
+            self._input_writer.new_interactions.append({"name":"set-task", "task-name":"remove-toner-cartridge"})
+        if state == 'remove' and component == 'drum_cartridge':
+            self._input_writer.new_interactions.append({"name":"set-task", "task-name":"remove-drum-cartridge"})
+        response = self._output_reader.response['set-task-ack']
+        del self._output_reader.response['set-task-ack']
+        logging.debug("[soar_agent] :: set-task-ack is {}".format(response))
         return response
 
 

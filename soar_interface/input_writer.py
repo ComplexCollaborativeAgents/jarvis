@@ -54,7 +54,9 @@ class input_writer(object):
         logging.debug("[input_writer] :: writing interactions {}".format(self.new_interactions))
         if len(self.new_interactions) > 0:
             for interaction in self.new_interactions:
-                self._interaction_link.CreateStringWME("request", interaction)
+                interaction_id = self._interaction_link.CreateIdWME('request')
+                for key, value in interaction.iteritems():
+                    interaction_id.CreateStringWME(key, value)
         del self.new_interactions[:]
 
     def write_time_to_input_link(self):

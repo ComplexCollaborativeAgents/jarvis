@@ -40,12 +40,17 @@ class soar_state_server:
             logging.info("[soar_state_server] :: requesting next instruction from agent")
             return soar_agent.get_next_instruction()
 
+        def set_task(state, component):
+            logging.info("[soar_state_server] :: asking to set a task {}:{}".format(state,component))
+            return soar_agent.set_task(state, component)
+
         def dummy():
             logging.info("[soar_state_server] :: server ending.")
 
         self.server.register_function(get_all, 'get_all')
         self.server.register_function(get_all_predicates, 'get_all_predicates')
         self.server.register_function(get_next_instruction, 'get_next_instruction')
+        self.server.register_function(set_task, 'set_task')
 
     def run(self):
         while not self.quit:

@@ -19,11 +19,16 @@ with open(CONFIG_FILE) as config_file:
 
 
 def create_connection_with_tracker():
+    '''
+    Connect to the ARA serve that generates a stream of perceptual events.
+    The hostname and port can be specified in ./config.json
+    :return: xmlrpclib.ServerProxy
+    '''
     url = 'http://{}:{}'.format(config['Servers']['input_host'], config['Servers']['input_port'])
-    tracker_server = xmlrpclib.ServerProxy(url)
+    server = xmlrpclib.ServerProxy(url)
     logging.info("[soar_client] :: Created a connection to the tracker server at: {}".format(url))
-    #print(tracker_server.get_all())
-    return tracker_server
+    return server
+
 
 def create_and_run_myserver(soar_agent):
     soar_server = soar_interface.soar_state_server.soar_state_server(soar_agent, port=config['Servers']['output_port'])
@@ -36,8 +41,9 @@ def create_and_start_coach(tracker_server):
     coach.register_output_callback(update, coach)
     logging.info("[soar_client] :: Started coaching agent")
     coach.start()
-    #coach.stop()
+    coach.stop()
     return coach
+
 
 if __name__ == '__main__':
     tracker_server = create_connection_with_tracker()

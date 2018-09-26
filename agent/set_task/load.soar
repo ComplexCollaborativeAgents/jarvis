@@ -1,0 +1,12 @@
+##!
+# @file: 
+#
+# @created smohan 20180921
+
+source "propose-set-task.soar"
+
+source "apply-set-task-remove-toner-cartridge.soar"
+
+source "elaborations.soar"
+
+source "apply-set-task-remove-drum-cartridge.soar"

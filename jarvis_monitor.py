@@ -109,7 +109,7 @@ class Application(tk.Frame, object):
 
 
 
-        b=tk.Label(self, text='Printer State', fg='black', bg='white', font=BOLDFONT)
+        b=tk.Label(self, text='World State Beliefs', fg='black', bg='white', font=BOLDFONT)
         b.grid(row=i,column=0,padx=5,pady=5,sticky='W' )
         i=i+1
 
@@ -164,22 +164,54 @@ class Application(tk.Frame, object):
             self.var_to_widget_index.append(var_to_widget)
             self.var_to_StringVar_index.append(var_to_StringVar)
 
-        self.create_instruction_widgets(i+1)
+        last_row = self.create_task_widgets(i+1)
+
+        self.create_instruction_widgets(last_row + 1)
 
         self.pack(padx=20, pady=20)
 
     def create_instruction_widgets(self, row_num):
         self.instruction_string_var = tk.StringVar()
+        self.task_string_var = tk.StringVar()
+
         label = tk.Label(self, text = 'Instructions', fg='black', bg = 'white', font=BOLDFONT)
         label.grid(row = row_num, column = 0, padx=5, pady=5, sticky='W')
+
+        task_label = tk.Label(self, textvariable = self.task_string_var, fg ='black', bg = 'white')
+        task_label.grid(row = row_num, column = 1, padx = 5, pady = 5, sticky = 'W')
 
         button = tk.Button(self, text="Get Next", fg='black', bg='white',
                            command = self.get_next_instruction_from_soar_runner, font = SMALLFONT)
         button.grid(row=row_num + 1, column=0, padx=5, pady=5, stick='W')
 
         instruction_label = tk.Label(self, textvariable=self.instruction_string_var, fg='black', bg = 'white')
-        instruction_label.grid(row = row_num + 1, column = 1, padx=5, pady=5, stick='W')
+        instruction_label.grid(row = row_num + 1, column = 1, padx=5, pady=5, sticky='W')
 
+
+
+    def create_task_widgets(self, row_num):
+        label = tk.Label(self, text = 'Tasks', fg = 'black', bg = 'white', font=BOLDFONT)
+        label.grid(row = row_num, column = 0, padx = 5, pady = 5, sticky = 'W')
+
+        row_num = row_num + 1
+
+        button = tk.Button(self, text="Remove toner cartridge", fg='black', bg='white',
+                           command = lambda: self.set_task('remove', 'toner_cartridge'), font = SMALLFONT)
+        button.grid(row=row_num, column=0, padx=5, pady=5, stick='W')
+
+        button = tk.Button(self, text="Remove drum cartridge", fg='black', bg='white',
+                           command= lambda: self.set_task('remove', 'drum_cartridge'), font=SMALLFONT)
+        button.grid(row=row_num, column=1, padx=5, pady=5, stick='W')
+
+        row_num = row_num + 1
+
+        return row_num
+
+
+    def set_task(self, goal_state, component):
+        self.server.set_task(goal_state, component)
+        self.task_string_var.set("{}:{}".format(goal_state, component))
+        #print("Task set? {}".format(set_task_acknowledgement))
 
     def get_next_instruction_from_soar_runner(self):
         next_instruction = self.server.get_next_instruction()
@@ -192,7 +224,7 @@ print("Done creating widgets")
 
 
 root = tk.Tk()
-root.title('Xerox PARC Visual Repair Assistant')
+root.title('JARVIS')
 root.configure(background='white')
 root.option_add("*Label*font", "Helvetica 15 bold")
 

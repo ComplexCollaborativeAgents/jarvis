@@ -8,7 +8,30 @@ sp {jarvis*elaborate*request*next-instruction
     (state <s>    ^name jarvis
                 ^world <w>
                  ^io.input-link.interaction <i>)
-     (<i>    ^request get-next-instruction)
+     (<i>    ^request.name get-next-instruction)
 -->
      (<s>    ^request next-instruction)
   }
+
+sp {jarvis*elaborate*request*set-task
+    :o-support
+    (state <s>    ^name jarvis
+                  ^world <w>
+                  ^io.input-link.interaction <i>)
+    (<i>    ^request <r>)
+    (<r>    ^name set-task)
+-->
+    (<s>    ^request <r>)
+    }
+
+sp {jarvis*elaborate*request*set-task*delete-desired
+    :o-support
+    (state <s>    ^name jarvis
+                  ^world <w>
+                  ^io.input-link.interaction <i>)
+    (<i>    ^request <r>)
+    (<r>    ^name set-task)
+    (<w>    ^desired <d>)
+-->
+    (<s>    ^desired <d> -)
+    }

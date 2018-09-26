@@ -6,7 +6,7 @@
 
     "SoarAgent": {
       "file": "agent/load.soar",
-      "name": "coachAR",
+      "name": "jarvis",
       "input_vars": "input_variables.json"
     },
 
@@ -17,6 +17,6 @@
     "Servers":{
       "output_port": 30000,
       "input_port": 28000,
-      "input_host": "caudell"
+      "input_host": "localhost"
     }
 }

@@ -20,7 +20,7 @@ sp {elaborate*output-link*state*command
  	(<io> 	^output-link <ol>
          	^input-link <il>)
   	(<il>	^time <t>
-         	^interaction.request get-all)
+         	^interaction.request.name get-all)
 -->
 	(<ol>	^state <state>)
  }
@@ -33,7 +33,7 @@ sp {elaborate*output-link*component
     (<io>    ^output-link.state <ol>
              ^input-link <il>)
     (<il>	^time <t>
-          	^interaction.request get-all)
+          	^interaction.request.name get-all)
     (<w>    ^component <c>)
     (<c>    ^id <id>
             ^name <name>)
@@ -51,7 +51,7 @@ sp {elaborate*output-link*state
     (<io>    ^output-link.state.component <oc>
              ^input-link <il>)
     (<il>	^time <t>
-          	^interaction.request get-all)
+          	^interaction.request.name get-all)
     (<w>    ^component <c>)
     (<c>    ^{<state-var> <> name <> visible <> paired-with <> id}.value <val>
             ^id <id>)
@@ -68,7 +68,7 @@ sp {elaborate*output-link*visible
     (<io>    ^output-link.state.component <oc>
              ^input-link <il>)
     (<il>	^time <t>
-          	^interaction.request get-all)
+          	^interaction.request.name get-all)
     (<w>    ^component <c>)
     (<c>    ^visible <v>
             ^id <id>)

@@ -1,0 +1,17 @@
+##!
+# @file
+#
+# @created smohan 20180921
+
+sp {jarvis*apply*set-task*remove-drum-cartridge
+    (state <s>    ^name set-task
+                  ^task-name remove-drum-cartridge
+                  ^world <w>
+                  ^superstate <ss>)
+    (<w>    ^component <tc>)
+    (<tc>    ^name drum-cartridge)
+-->
+    (<ss>    ^desired <d>)
+    (<d>    ^component <tc>
+            ^out <tc>)
+    }

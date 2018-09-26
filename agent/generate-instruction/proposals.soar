@@ -3,10 +3,11 @@
 #
 # @created smohan 20180702
 
-sp {generate-instruction*propose*set-desired
+sp {generate-instruction*propose*init-generate-instruction
 	(state <s>	^name generate-instruction
-            	-^desired <any>)
+            	^desired <any>
+                -^previous-operator <any>)
 -->
 	(<s>	^operator <op> +)
- 	(<op>	^name set-desired-state)
+ 	(<op>	^name init-generate-instruction)
   }
